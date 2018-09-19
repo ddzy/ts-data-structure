@@ -23,7 +23,7 @@
  * 创建链表
  */
 interface ILinkedListProps {
-  
+
 };
 interface IPointProps {
   element: any,
@@ -32,12 +32,12 @@ interface IPointProps {
 
 class LinkedList {
   private length: number = 0;
-  
+
   // 头结点引用
   private head: any = null;
 
   private element: any = '';
-  
+
   public constructor(props: ILinkedListProps) {
   }
 
@@ -48,14 +48,15 @@ class LinkedList {
     const node = new Point({
       element: point,
       next: null,
-    });
+    }) as Point;
+    // 当前节点引用
     let currentNode: any;
 
     // 为空 && 不为空
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       this.head = node;
       currentNode = node;
-    }else {
+    } else {
       currentNode = this.head;
 
       while (currentNode && currentNode.next) {
@@ -65,7 +66,7 @@ class LinkedList {
       currentNode.next = node;
     }
 
-    this.length ++;
+    this.length++;
 
     return this;
   }
@@ -74,14 +75,14 @@ class LinkedList {
    * 任意位置插入项
    */
   public insert = (
-    index: number, 
+    index: number,
     point: any,
   ): LinkedList => {
     return this;
   }
 
   /**
-   * 移除列表最后一项
+   * 移除特定值的项
    */
   public remove = (point: any): LinkedList => {
     return this;
@@ -95,16 +96,38 @@ class LinkedList {
   }
 
   /**
-   * 移除链表特定项
+   * 移除特定位置项
    */
   public removeAt = (index: number): any => {
-    return '';
+    // 检测越界
+    if (index > -1 && index < this.length) {
+      let currentNode: any = this.head;
+      let previousNode: any = null;
+      let currentIndex: number = 0;
+
+      // 移除第一项
+      if(index === 0) {
+        this.head = currentNode.next;
+      }else {
+        while(currentIndex ++ < index) {
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+        }
+
+        // 移除currentNode
+        previousNode.next = currentNode.next;
+      }
+
+      this.length --;
+    }
+
+    return this;
   }
 
   /**
    * 链表是否为空
    */
-  public isEmpty = ():boolean => {
+  public isEmpty = (): boolean => {
     return this.length === 0;
   }
 
@@ -121,7 +144,7 @@ class LinkedList {
  */
 class Point {
   private element: any = '';
-  
+
   private next: any = null;
 
   public constructor(props: IPointProps) {
@@ -135,5 +158,7 @@ const linkedlist = new LinkedList({});
 
 linkedlist.append('duan');
 linkedlist.append('zhao');
+linkedlist.append('yang');
+linkedlist.append('haha').removeAt(1);
 
 console.log(linkedlist.size());

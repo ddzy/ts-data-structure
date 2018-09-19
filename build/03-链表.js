@@ -35,6 +35,7 @@ var LinkedList = /** @class */ (function () {
                 element: point,
                 next: null,
             });
+            // 当前节点引用
             var currentNode;
             // 为空 && 不为空
             if (_this.isEmpty()) {
@@ -58,7 +59,7 @@ var LinkedList = /** @class */ (function () {
             return _this;
         };
         /**
-         * 移除列表最后一项
+         * 移除特定值的项
          */
         this.remove = function (point) {
             return _this;
@@ -70,10 +71,29 @@ var LinkedList = /** @class */ (function () {
             return -1;
         };
         /**
-         * 移除链表特定项
+         * 移除特定位置项
          */
         this.removeAt = function (index) {
-            return '';
+            // 检测越界
+            if (index > -1 && index < _this.length) {
+                var currentNode = _this.head;
+                var previousNode = null;
+                var currentIndex = 0;
+                // 移除第一项
+                if (index === 0) {
+                    _this.head = currentNode.next;
+                }
+                else {
+                    while (currentIndex++ < index) {
+                        previousNode = currentNode;
+                        currentNode = currentNode.next;
+                    }
+                    // 移除currentNode
+                    previousNode.next = currentNode.next;
+                }
+                _this.length--;
+            }
+            return _this;
         };
         /**
          * 链表是否为空
@@ -105,4 +125,6 @@ var Point = /** @class */ (function () {
 var linkedlist = new LinkedList({});
 linkedlist.append('duan');
 linkedlist.append('zhao');
+linkedlist.append('yang');
+linkedlist.append('haha').removeAt(1);
 console.log(linkedlist.size());
