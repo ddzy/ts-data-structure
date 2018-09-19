@@ -55,6 +55,29 @@ var LinkedList = /** @class */ (function () {
          * 任意位置插入项
          */
         this.insert = function (index, point) {
+            if (index >= 0 && index < _this.length) {
+                var node = new Point({
+                    element: point,
+                    next: null,
+                });
+                var currentNode = _this.head;
+                var previousNode = new Point({});
+                // 第一项
+                if (index === 0) {
+                    node.next = currentNode;
+                    _this.head = node;
+                }
+                else {
+                    // 任意位置
+                    while (index++ < _this.length) {
+                        previousNode = currentNode;
+                        currentNode = currentNode.next;
+                    }
+                    node.next = currentNode;
+                    previousNode.next = node;
+                }
+                _this.length++;
+            }
             return _this;
         };
         /**

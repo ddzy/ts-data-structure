@@ -26,8 +26,8 @@ interface ILinkedListProps {
 
 };
 interface IPointProps {
-  element: any,
-  next: any,
+  readonly element?: any,
+  readonly next?: any,
 };
 
 
@@ -43,12 +43,13 @@ class LinkedList {
    * 链表尾部添加项
    */
   public append = (point: any): LinkedList => {
-    const node = new Point({
+
+    const node: Point = new Point({
       element: point,
       next: null,
     }) as Point;
     // 当前节点引用
-    let currentNode: any;
+    let currentNode: Point;
 
     // 为空 && 不为空
     if (this.isEmpty()) {
@@ -76,6 +77,33 @@ class LinkedList {
     index: number,
     point: any,
   ): LinkedList => {
+    if(index >= 0 && index < this.length) {
+
+      const node: Point = new Point({
+        element: point,
+        next: null,
+      });
+      let currentNode: Point = this.head;
+      let previousNode: Point = new Point({});
+
+      // 第一项
+      if(index === 0) {
+        node.next = currentNode;
+        this.head = node;
+      }else {
+        // 任意位置
+        while(index ++ < this.length) {
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+        }
+
+        node.next = currentNode;
+        previousNode.next = node;
+      }
+
+      this.length ++;
+    }
+
     return this as LinkedList;
   }
 
@@ -90,6 +118,8 @@ class LinkedList {
    * 元素在链表的索引
    */
   public where = (point: any): number => {
+    
+
     return -1;
   }
 
@@ -141,9 +171,9 @@ class LinkedList {
  * 链表 单个节点
  */
 class Point {
-  private element: any = '';
+  public element: any = '';
 
-  private next: any = null;
+  public next: any = null;
 
   public constructor(props: IPointProps) {
     this.element = props.element;
