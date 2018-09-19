@@ -61,7 +61,7 @@ class Sequence {
   /**
    * 返回队列的第一个元素
    */
-  public front = (): any => {
+  public first = (): any => {
     return this.items[0];
   }
 
@@ -75,7 +75,7 @@ class Sequence {
 
 
 /**
- * 应用: 优先队列
+ * 应用一: 优先队列
  * 特点: 两种选项 {
  *    1. 设置优先级, 在正确的位置添加元素.
  *    2. 入列操作添加元素, 然后按照优先级移除他们
@@ -117,22 +117,33 @@ class PrioritySequence extends Sequence {
 }
 
 
-const priority = new PrioritySequence();
-priority.enqueue({
-  element: 'zhao',
-  priority: 2,
-});
-priority.enqueue({
-  element: 'duan',
-  priority: 3,
-});
-priority.enqueue({
-  element: 'yang',
-  priority: 1,
-});
-priority.enqueue({
-  element: 'ha',
-  priority: 4,
-});
 
-console.log(priority.all());
+/**
+ * 应用二: 循环队列
+ * 例子: 击鼓传花
+ */
+function sendFlower(
+  // 玩家列表
+  persionList: string[],
+  // 一轮循环时间
+  duringNum: number,
+): string {
+  const sequence: Sequence = new Sequence({});
+
+  // 入队
+  persionList.forEach((item) => {
+    sequence.enqueue(item);
+  });
+
+  while (sequence.size() > 1) {
+    for(let i = 0; i < duringNum; i++) {
+      sequence.enqueue(sequence.dequeue());
+    }
+
+    // 淘汰出局
+    console.log(`${sequence.dequeue()}: 被淘汰出局!`);
+  }
+
+  // 胜利者
+  return sequence.first();
+}

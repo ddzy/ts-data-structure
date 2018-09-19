@@ -59,7 +59,7 @@ var Sequence = /** @class */ (function () {
         /**
          * 返回队列的第一个元素
          */
-        this.front = function () {
+        this.first = function () {
             return _this.items[0];
         };
         /**
@@ -72,7 +72,7 @@ var Sequence = /** @class */ (function () {
     return Sequence;
 }());
 /**
- * 应用: 优先队列
+ * 应用一: 优先队列
  * 特点: 两种选项 {
  *    1. 设置优先级, 在正确的位置添加元素.
  *    2. 入列操作添加元素, 然后按照优先级移除他们
@@ -107,21 +107,27 @@ var PrioritySequence = /** @class */ (function (_super) {
     }
     return PrioritySequence;
 }(Sequence));
-var priority = new PrioritySequence();
-priority.enqueue({
-    element: 'zhao',
-    priority: 2,
-});
-priority.enqueue({
-    element: 'duan',
-    priority: 3,
-});
-priority.enqueue({
-    element: 'yang',
-    priority: 1,
-});
-priority.enqueue({
-    element: 'ha',
-    priority: 4,
-});
-console.log(priority.all());
+/**
+ * 应用二: 循环队列
+ * 例子: 击鼓传花
+ */
+function sendFlower(
+// 玩家列表
+persionList, 
+// 一轮循环时间
+duringNum) {
+    var sequence = new Sequence({});
+    // 入队
+    persionList.forEach(function (item) {
+        sequence.enqueue(item);
+    });
+    while (sequence.size() > 1) {
+        for (var i = 0; i < duringNum; i++) {
+            sequence.enqueue(sequence.dequeue());
+        }
+        // 淘汰出局
+        console.log(sequence.dequeue() + ": \u88AB\u6DD8\u6C70\u51FA\u5C40!");
+    }
+    // 胜利者
+    return sequence.first();
+}
