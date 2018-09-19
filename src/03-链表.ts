@@ -23,10 +23,11 @@
  * 创建链表
  */
 interface ILinkedListProps {
-  element: any,
+  
 };
 interface IPointProps {
   element: any,
+  next: any,
 };
 
 class LinkedList {
@@ -38,7 +39,6 @@ class LinkedList {
   private element: any = '';
   
   public constructor(props: ILinkedListProps) {
-    this.element = props.element;
   }
 
   /**
@@ -46,8 +46,26 @@ class LinkedList {
    */
   public append = (point: any): LinkedList => {
     const node = new Point({
-      element: this.element,
+      element: point,
+      next: null,
     });
+    let currentNode: any;
+
+    // 为空 && 不为空
+    if(this.isEmpty()) {
+      this.head = node;
+      currentNode = node;
+    }else {
+      currentNode = this.head;
+
+      while (currentNode && currentNode.next) {
+        currentNode = currentNode.next;
+      }
+
+      currentNode.next = node;
+    }
+
+    this.length ++;
 
     return this;
   }
@@ -108,5 +126,14 @@ class Point {
 
   public constructor(props: IPointProps) {
     this.element = props.element;
+    this.next = props.next;
   }
 }
+
+
+const linkedlist = new LinkedList({});
+
+linkedlist.append('duan');
+linkedlist.append('zhao');
+
+console.log(linkedlist.size());

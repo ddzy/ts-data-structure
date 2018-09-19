@@ -32,8 +32,23 @@ var LinkedList = /** @class */ (function () {
          */
         this.append = function (point) {
             var node = new Point({
-                element: _this.element,
+                element: point,
+                next: null,
             });
+            var currentNode;
+            // 为空 && 不为空
+            if (_this.isEmpty()) {
+                _this.head = node;
+                currentNode = node;
+            }
+            else {
+                currentNode = _this.head;
+                while (currentNode && currentNode.next) {
+                    currentNode = currentNode.next;
+                }
+                currentNode.next = node;
+            }
+            _this.length++;
             return _this;
         };
         /**
@@ -72,7 +87,6 @@ var LinkedList = /** @class */ (function () {
         this.size = function () {
             return _this.length;
         };
-        this.element = props.element;
     }
     return LinkedList;
 }());
@@ -84,6 +98,11 @@ var Point = /** @class */ (function () {
         this.element = '';
         this.next = null;
         this.element = props.element;
+        this.next = props.next;
     }
     return Point;
 }());
+var linkedlist = new LinkedList({});
+linkedlist.append('duan');
+linkedlist.append('zhao');
+console.log(linkedlist.size());
