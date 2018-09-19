@@ -26,7 +26,6 @@ var LinkedList = /** @class */ (function () {
         this.length = 0;
         // 头结点引用
         this.head = null;
-        this.element = '';
         /**
          * 链表尾部添加项
          */

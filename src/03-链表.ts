@@ -30,16 +30,14 @@ interface IPointProps {
   next: any,
 };
 
+
 class LinkedList {
   private length: number = 0;
 
   // 头结点引用
   private head: any = null;
 
-  private element: any = '';
-
-  public constructor(props: ILinkedListProps) {
-  }
+  public constructor(props: ILinkedListProps) {}
 
   /**
    * 链表尾部添加项
@@ -68,7 +66,7 @@ class LinkedList {
 
     this.length++;
 
-    return this;
+    return this as LinkedList;
   }
 
   /**
@@ -78,14 +76,14 @@ class LinkedList {
     index: number,
     point: any,
   ): LinkedList => {
-    return this;
+    return this as LinkedList;
   }
 
   /**
    * 移除特定值的项
    */
   public remove = (point: any): LinkedList => {
-    return this;
+    return this as LinkedList;
   }
 
   /**
@@ -121,7 +119,7 @@ class LinkedList {
       this.length --;
     }
 
-    return this;
+    return this as LinkedList;
   }
 
   /**
