@@ -90,10 +90,16 @@ var PrioritySequence = /** @class */ (function (_super) {
                 _this.items.push(args);
             }
             else {
-                _this.items.forEach(function (item, index) {
-                    item.priority >= args.priority
-                        && _this.items.splice(index, 0, args.element);
-                });
+                // 是否已经添加
+                var flagIsAdd = false;
+                for (var i = 0, every = void 0; every = _this.items[i++];) {
+                    if (every.priority <= args.priority) {
+                        flagIsAdd = true;
+                        _this.items.splice(i - 1, 0, args);
+                        break;
+                    }
+                }
+                !flagIsAdd && _this.items.push(args);
             }
             return _this;
         };
@@ -102,3 +108,20 @@ var PrioritySequence = /** @class */ (function (_super) {
     return PrioritySequence;
 }(Sequence));
 var priority = new PrioritySequence();
+priority.enqueue({
+    element: 'zhao',
+    priority: 2,
+});
+priority.enqueue({
+    element: 'duan',
+    priority: 3,
+});
+priority.enqueue({
+    element: 'yang',
+    priority: 1,
+});
+priority.enqueue({
+    element: 'ha',
+    priority: 4,
+});
+console.log(priority.all());

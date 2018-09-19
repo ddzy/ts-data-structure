@@ -98,10 +98,18 @@ class PrioritySequence extends Sequence {
     if(this.isEmpty()) {
       this.items.push(args);
     }else {
-      this.items.forEach((item, index): void => {
-        item.priority >= args.priority 
-          && this.items.splice(index, 0, args.element)
-      });
+      // 是否已经添加
+      let flagIsAdd: boolean = false;
+
+      for(let i = 0, every; every = this.items[i++];) {
+        if(every.priority <= args.priority) {
+          flagIsAdd = true;
+          this.items.splice(i - 1, 0, args);
+          break;
+        }
+      }
+
+      !flagIsAdd && this.items.push(args);
     }
 
     return this;
@@ -110,3 +118,21 @@ class PrioritySequence extends Sequence {
 
 
 const priority = new PrioritySequence();
+priority.enqueue({
+  element: 'zhao',
+  priority: 2,
+});
+priority.enqueue({
+  element: 'duan',
+  priority: 3,
+});
+priority.enqueue({
+  element: 'yang',
+  priority: 1,
+});
+priority.enqueue({
+  element: 'ha',
+  priority: 4,
+});
+
+console.log(priority.all());
