@@ -139,7 +139,6 @@ function sendFlower(
     for(let i = 0; i < duringNum; i++) {
       sequence.enqueue(sequence.dequeue());
     }
-
     // 淘汰出局
     console.log(`${sequence.dequeue()}: 被淘汰出局!`);
   }
