@@ -331,15 +331,18 @@ class DoublyLinkedList {
       this.tail = node;
       currentNode = node;
     }else {
+      currentNode = this.tail;
       // 不为空
       while(currentNode && currentNode.prev) {
-        this.head = node;
-        this.tail = currentNode;
         currentNode = currentNode.prev;
       }
 
       currentNode.prev = node;
+      this.head = node;
+      node.next = currentNode;
     }
+
+    this.length ++;
 
     return this;
   }
@@ -349,5 +352,6 @@ const doublylinkedlist = new DoublyLinkedList();
 doublylinkedlist.append('duan');
 doublylinkedlist.append('zhao');
 doublylinkedlist.append('yang');
+doublylinkedlist.prepend('prepend');
 // console.log(doublylinkedlist.size());
-console.log(doublylinkedlist.printReverse());
+console.log(doublylinkedlist.print());

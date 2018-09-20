@@ -261,14 +261,16 @@ var DoublyLinkedList = /** @class */ (function () {
                 currentNode = node;
             }
             else {
+                currentNode = _this.tail;
                 // 不为空
                 while (currentNode && currentNode.prev) {
-                    _this.head = node;
-                    _this.tail = currentNode;
                     currentNode = currentNode.prev;
                 }
                 currentNode.prev = node;
+                _this.head = node;
+                node.next = currentNode;
             }
+            _this.length++;
             return _this;
         };
     }
@@ -278,5 +280,6 @@ var doublylinkedlist = new DoublyLinkedList();
 doublylinkedlist.append('duan');
 doublylinkedlist.append('zhao');
 doublylinkedlist.append('yang');
+doublylinkedlist.prepend('prepend');
 // console.log(doublylinkedlist.size());
-console.log(doublylinkedlist.printReverse());
+console.log(doublylinkedlist.print());
