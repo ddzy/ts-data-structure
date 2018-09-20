@@ -218,6 +218,10 @@ interface IDoublyPointProps {
 class DoublyPoint {
   public element: any = null;
 
+  public next: any = null;
+
+  public prev: any = null;
+
   public constructor(
     props: IDoublyPointProps = {},
   ) {
@@ -257,13 +261,27 @@ class DoublyLinkedList {
     const node: DoublyPoint = new DoublyPoint({
       element: point,
     });
-    let currentNode: DoublyPoint = this.head;
-    let previousNode: DoublyPoint = new DoublyPoint({});
+    let currentNode: any = this.head;
 
+    // 为空
     if(this.isEmpty()) {
       this.head = node;
       this.tail = node;
+      currentNode = node;
+    }else {
+      // 不为空
+      currentNode = this.head;
+
+      while(currentNode && currentNode.next) {
+        currentNode = currentNode.next;
+      }
+
+      currentNode.next = node;
+      node.prev = currentNode;
+      this.tail = node;
     }
+
+    this.length ++;
 
     return this;
   }
@@ -286,8 +304,22 @@ class DoublyLinkedList {
   /**
    * 反向打印链表
    */
+  public printReverse = (): string => {
+    let currentNode: DoublyPoint = this.tail;
+    let result: string = '';
+
+    while(currentNode) {
+      result += `${currentNode.element}、`;
+      currentNode = currentNode.prev;
+    }
+
+    return result;
+  }
 }
 
 const doublylinkedlist = new DoublyLinkedList();
 doublylinkedlist.append('duan');
-console.log(doublylinkedlist.print());
+doublylinkedlist.append('zhao');
+doublylinkedlist.append('yang');
+// console.log(doublylinkedlist.size());
+console.log(doublylinkedlist.printReverse());

@@ -170,6 +170,8 @@ var DoublyPoint = /** @class */ (function () {
     function DoublyPoint(props) {
         if (props === void 0) { props = {}; }
         this.element = null;
+        this.next = null;
+        this.prev = null;
         this.element = props.element;
     }
     return DoublyPoint;
@@ -201,11 +203,23 @@ var DoublyLinkedList = /** @class */ (function () {
                 element: point,
             });
             var currentNode = _this.head;
-            var previousNode = new DoublyPoint({});
+            // 为空
             if (_this.isEmpty()) {
                 _this.head = node;
                 _this.tail = node;
+                currentNode = node;
             }
+            else {
+                // 不为空
+                currentNode = _this.head;
+                while (currentNode && currentNode.next) {
+                    currentNode = currentNode.next;
+                }
+                currentNode.next = node;
+                node.prev = currentNode;
+                _this.tail = node;
+            }
+            _this.length++;
             return _this;
         };
         /**
@@ -220,9 +234,24 @@ var DoublyLinkedList = /** @class */ (function () {
             }
             return result;
         };
+        /**
+         * 反向打印链表
+         */
+        this.printReverse = function () {
+            var currentNode = _this.tail;
+            var result = '';
+            while (currentNode) {
+                result += currentNode.element + "\u3001";
+                currentNode = currentNode.prev;
+            }
+            return result;
+        };
     }
     return DoublyLinkedList;
 }());
 var doublylinkedlist = new DoublyLinkedList();
 doublylinkedlist.append('duan');
-console.log(doublylinkedlist.print());
+doublylinkedlist.append('zhao');
+doublylinkedlist.append('yang');
+// console.log(doublylinkedlist.size());
+console.log(doublylinkedlist.printReverse());
