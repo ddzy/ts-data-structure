@@ -246,6 +246,31 @@ var DoublyLinkedList = /** @class */ (function () {
             }
             return result;
         };
+        /**
+         * 链表首部添加
+         */
+        this.prepend = function (point) {
+            var node = new DoublyPoint({
+                element: point,
+            });
+            var currentNode = _this.tail;
+            // 链表为空
+            if (_this.isEmpty()) {
+                _this.head = node;
+                _this.tail = node;
+                currentNode = node;
+            }
+            else {
+                // 不为空
+                while (currentNode && currentNode.prev) {
+                    _this.head = node;
+                    _this.tail = currentNode;
+                    currentNode = currentNode.prev;
+                }
+                currentNode.prev = node;
+            }
+            return _this;
+        };
     }
     return DoublyLinkedList;
 }());

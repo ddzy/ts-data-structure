@@ -315,6 +315,34 @@ class DoublyLinkedList {
 
     return result;
   }
+
+  /**
+   * 链表首部添加
+   */
+  public prepend = (point: any): DoublyLinkedList => {
+    const node: DoublyPoint = new DoublyPoint({
+      element: point,
+    });
+    let currentNode: any = this.tail;
+
+    // 链表为空
+    if(this.isEmpty()) {
+      this.head = node;
+      this.tail = node;
+      currentNode = node;
+    }else {
+      // 不为空
+      while(currentNode && currentNode.prev) {
+        this.head = node;
+        this.tail = currentNode;
+        currentNode = currentNode.prev;
+      }
+
+      currentNode.prev = node;
+    }
+
+    return this;
+  }
 }
 
 const doublylinkedlist = new DoublyLinkedList();
