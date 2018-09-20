@@ -90,13 +90,17 @@ var LinkedList = /** @class */ (function () {
         /**
          * 元素在链表的索引
          */
-        // public where = (point: any): number => {
-        //   const currentNode: Point = this.head;
-        //   const currentIndex: number = 0;
-        //   while(currentNode && currentNode.element !== point) {
-        //   }
-        //   return -1;
-        // }
+        this.where = function (point) {
+            var currentNode = _this.head;
+            var currentIndex = 0;
+            while (currentNode && currentNode.element !== point) {
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+            return currentIndex === _this.length
+                ? -1
+                : currentIndex;
+        };
         /**
          * 移除特定位置项
          */
@@ -168,4 +172,5 @@ linkedlist.append('yang');
 linkedlist.append('hahah');
 linkedlist.insert(2, 'insert');
 // console.log(linkedlist.size());
-console.log(linkedlist.print());
+// console.log(linkedlist.print());
+// console.log(linkedlist.where('yang'));
