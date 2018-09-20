@@ -211,15 +211,7 @@ class Point {
 }
 
 
-const linkedlist = new LinkedList({});
 
-linkedlist.append('duan');
-linkedlist.append('zhao');
-linkedlist.append('yang');
-linkedlist.append('hahah');
-linkedlist.insert(2, 'insert');
-
-
-// console.log(linkedlist.size());
-console.log(linkedlist.print());
-// console.log(linkedlist.where('yang'));
+/**
+ * 实例二: 双向链表
+ */
