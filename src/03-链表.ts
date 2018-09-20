@@ -372,15 +372,14 @@ class DoublyLinkedList {
         // 逆序
         while(currentIndex-- > index) {
           currentNode = currentNode.prev;
-          previousNode = currentNode.next;
+          previousNode = currentNode.prev;
         }
 
-        // currentNode.next = node;
-        // node.next = previousNode;
-        currentNode.next = node;
-        node.prev = currentNode;
-        node.next = previousNode;
-        previousNode.prev = node;
+        currentNode.prev = node;
+        node.next = currentNode;
+        node.prev = previousNode;
+        previousNode.next = node;
+
       }else {
         // 正序
         while (currentIndex++ < index) {
@@ -410,8 +409,9 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-doublylinkedlist.insert(6, 'insert');
+// doublylinkedlist.insert(6, 'insert');
 doublylinkedlist.insert(2, 'inserttwo');
-doublylinkedlist.insert(8, 'insertthree');
+doublylinkedlist.insert(5, 'insertthree');
+// doublylinkedlist.insert(8, 'insertthree');
 console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());
