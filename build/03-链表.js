@@ -166,16 +166,16 @@ var LinkedList = /** @class */ (function () {
 }());
 ;
 ;
-var doublyPoint = /** @class */ (function () {
-    function doublyPoint(props) {
+var DoublyPoint = /** @class */ (function () {
+    function DoublyPoint(props) {
         if (props === void 0) { props = {}; }
         this.element = null;
         this.element = props.element;
     }
-    return doublyPoint;
+    return DoublyPoint;
 }());
-var doublyLinkedList = /** @class */ (function () {
-    function doublyLinkedList(props) {
+var DoublyLinkedList = /** @class */ (function () {
+    function DoublyLinkedList(props) {
         if (props === void 0) { props = {}; }
         var _this = this;
         this.length = 0;
@@ -197,10 +197,32 @@ var doublyLinkedList = /** @class */ (function () {
          * 链表尾部添加
          */
         this.append = function (point) {
+            var node = new DoublyPoint({
+                element: point,
+            });
+            var currentNode = _this.head;
+            var previousNode = new DoublyPoint({});
             if (_this.isEmpty()) {
+                _this.head = node;
+                _this.tail = node;
             }
             return _this;
         };
+        /**
+         * 正向打印链表
+         */
+        this.print = function () {
+            var currentNode = _this.head;
+            var result = '';
+            while (currentNode) {
+                result += currentNode.element + "\u3001";
+                currentNode = currentNode.next;
+            }
+            return result;
+        };
     }
-    return doublyLinkedList;
+    return DoublyLinkedList;
 }());
+var doublylinkedlist = new DoublyLinkedList();
+doublylinkedlist.append('duan');
+console.log(doublylinkedlist.print());

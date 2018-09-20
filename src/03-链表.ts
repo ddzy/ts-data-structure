@@ -215,7 +215,7 @@ interface IDoublyPointProps {
   element?: any;
 };
 
-class doublyPoint {
+class DoublyPoint {
   public element: any = null;
 
   public constructor(
@@ -225,7 +225,7 @@ class doublyPoint {
   }
 }
 
-class doublyLinkedList {
+class DoublyLinkedList {
   private length: number = 0
 
   private head: any = null
@@ -253,11 +253,41 @@ class doublyLinkedList {
   /**
    * 链表尾部添加
    */
-  public append = (point: any): doublyLinkedList => {
+  public append = (point: any): DoublyLinkedList => {
+    const node: DoublyPoint = new DoublyPoint({
+      element: point,
+    });
+    let currentNode: DoublyPoint = this.head;
+    let previousNode: DoublyPoint = new DoublyPoint({});
+
     if(this.isEmpty()) {
-      
+      this.head = node;
+      this.tail = node;
     }
 
     return this;
   }
+
+  /**
+   * 正向打印链表
+   */
+  public print = (): string => {
+    let currentNode: any = this.head;
+    let result: string = '';
+
+    while(currentNode) {
+      result += `${currentNode.element}、`;
+      currentNode = currentNode.next;
+    }
+
+    return result;
+  }
+
+  /**
+   * 反向打印链表
+   */
 }
+
+const doublylinkedlist = new DoublyLinkedList();
+doublylinkedlist.append('duan');
+console.log(doublylinkedlist.print());
