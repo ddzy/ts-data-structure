@@ -85,6 +85,9 @@ var LinkedList = /** @class */ (function () {
          * 移除特定值的项
          */
         this.remove = function (point) {
+            var temp = _this.where(point);
+            temp !== -1
+                && _this.removeAt(temp);
             return _this;
         };
         /**
@@ -172,5 +175,5 @@ linkedlist.append('yang');
 linkedlist.append('hahah');
 linkedlist.insert(2, 'insert');
 // console.log(linkedlist.size());
-// console.log(linkedlist.print());
+console.log(linkedlist.print());
 // console.log(linkedlist.where('yang'));

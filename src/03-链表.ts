@@ -112,7 +112,10 @@ class LinkedList {
    * 移除特定值的项
    */
   public remove = (point: any): LinkedList => {
-    
+    const temp = this.where(point)
+
+    temp !== -1 
+      && this.removeAt(temp);
 
     return this as LinkedList;
   }
@@ -218,5 +221,5 @@ linkedlist.insert(2, 'insert');
 
 
 // console.log(linkedlist.size());
-// console.log(linkedlist.print());
+console.log(linkedlist.print());
 // console.log(linkedlist.where('yang'));
