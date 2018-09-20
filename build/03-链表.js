@@ -196,6 +196,30 @@ var DoublyLinkedList = /** @class */ (function () {
             return _this.length === 0;
         };
         /**
+         * 正向打印链表
+         */
+        this.print = function () {
+            var currentNode = _this.head;
+            var result = '';
+            while (currentNode) {
+                result += currentNode.element + "\u3001";
+                currentNode = currentNode.next;
+            }
+            return result;
+        };
+        /**
+         * 反向打印链表
+         */
+        this.printReverse = function () {
+            var currentNode = _this.tail;
+            var result = '';
+            while (currentNode) {
+                result += currentNode.element + "\u3001";
+                currentNode = currentNode.prev;
+            }
+            return result;
+        };
+        /**
          * 链表尾部添加
          */
         this.append = function (point) {
@@ -221,30 +245,6 @@ var DoublyLinkedList = /** @class */ (function () {
             }
             _this.length++;
             return _this;
-        };
-        /**
-         * 正向打印链表
-         */
-        this.print = function () {
-            var currentNode = _this.head;
-            var result = '';
-            while (currentNode) {
-                result += currentNode.element + "\u3001";
-                currentNode = currentNode.next;
-            }
-            return result;
-        };
-        /**
-         * 反向打印链表
-         */
-        this.printReverse = function () {
-            var currentNode = _this.tail;
-            var result = '';
-            while (currentNode) {
-                result += currentNode.element + "\u3001";
-                currentNode = currentNode.prev;
-            }
-            return result;
         };
         /**
          * 链表首部添加
@@ -273,6 +273,38 @@ var DoublyLinkedList = /** @class */ (function () {
             _this.length++;
             return _this;
         };
+        /**
+         * 任意位置添加
+         */
+        this.insert = function (index, point) {
+            var node = new DoublyPoint({
+                element: point,
+            });
+            // 作优化, 正序or逆序遍历
+            var halfLength = _this.length / 2;
+            var currentIndex = index > halfLength
+                ? _this.length - 1
+                : 0;
+            var currentNode = index > halfLength
+                ? _this.tail
+                : _this.head;
+            var previousNode = null;
+            if (index > -1 && index < _this.length) {
+                if (index > halfLength) {
+                    // 逆序
+                    while (currentIndex-- > index) {
+                        currentNode = currentNode.prev;
+                        previousNode = currentNode.next;
+                    }
+                    currentNode.next = node;
+                    node.next = previousNode;
+                }
+                else {
+                    // 正序
+                }
+            }
+            return _this;
+        };
     }
     return DoublyLinkedList;
 }());
@@ -281,5 +313,10 @@ doublylinkedlist.append('duan');
 doublylinkedlist.append('zhao');
 doublylinkedlist.append('yang');
 doublylinkedlist.prepend('prepend');
-// console.log(doublylinkedlist.size());
+doublylinkedlist.append('test1');
+doublylinkedlist.append('test2');
+doublylinkedlist.append('test3');
+doublylinkedlist.append('test4');
+doublylinkedlist.insert(6, 'insert');
+console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());

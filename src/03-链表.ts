@@ -22,7 +22,7 @@
 /**
  * 实例一: 单链表
  */
-interface ILinkedListProps {};
+interface ILinkedListProps { };
 interface IPointProps {
   readonly element?: any,
   readonly next?: any,
@@ -44,7 +44,7 @@ class LinkedList {
   // 头结点引用
   private head: any = null;
 
-  public constructor(props: ILinkedListProps) {}
+  public constructor(props: ILinkedListProps) { }
 
   /**
    * 链表尾部添加项
@@ -84,7 +84,7 @@ class LinkedList {
     index: number,
     point: any,
   ): LinkedList => {
-    if(index >= 0 && index < this.length) {
+    if (index >= 0 && index < this.length) {
 
       const node: Point = new Point({
         element: point,
@@ -95,12 +95,12 @@ class LinkedList {
       let currentIndex: number = 0;
 
       // 第一项
-      if(index === 0) {
+      if (index === 0) {
         node.next = currentNode;
         this.head = node;
-      }else {
+      } else {
         // 任意位置
-        while(currentIndex ++ < index) {
+        while (currentIndex++ < index) {
           previousNode = currentNode;
           currentNode = currentNode.next;
         }
@@ -109,7 +109,7 @@ class LinkedList {
         previousNode.next = node;
       }
 
-      this.length ++;
+      this.length++;
     }
 
     return this as LinkedList;
@@ -121,7 +121,7 @@ class LinkedList {
   public remove = (point: any): LinkedList => {
     const temp = this.where(point)
 
-    temp !== -1 
+    temp !== -1
       && this.removeAt(temp);
 
     return this as LinkedList;
@@ -134,9 +134,9 @@ class LinkedList {
     let currentNode: Point = this.head;
     let currentIndex: number = 0;
 
-    while(currentNode && currentNode.element !== point) {
+    while (currentNode && currentNode.element !== point) {
       currentNode = currentNode.next;
-      currentIndex ++;
+      currentIndex++;
     }
 
     return currentIndex === this.length
@@ -155,10 +155,10 @@ class LinkedList {
       let currentIndex: number = 0;
 
       // 移除第一项
-      if(index === 0) {
+      if (index === 0) {
         this.head = currentNode.next;
-      }else {
-        while(currentIndex ++ < index) {
+      } else {
+        while (currentIndex++ < index) {
           previousNode = currentNode;
           currentNode = currentNode.next;
         }
@@ -167,7 +167,7 @@ class LinkedList {
         previousNode.next = currentNode.next;
       }
 
-      this.length --;
+      this.length--;
     }
 
     return this as LinkedList;
@@ -194,7 +194,7 @@ class LinkedList {
     let currentNode: Point = this.head;
     let result: string = '';
 
-    while(currentNode) {
+    while (currentNode) {
       result += `${currentNode.element}、`;
       currentNode = currentNode.next;
     }
@@ -210,7 +210,7 @@ class LinkedList {
 /**
  * 实例二: 双向链表
  */
-interface IDoublyLinkedListProps {};
+interface IDoublyLinkedListProps { };
 interface IDoublyPointProps {
   element?: any;
 };
@@ -238,7 +238,7 @@ class DoublyLinkedList {
 
   public constructor(
     props: IDoublyLinkedListProps = {},
-  ) {}
+  ) { }
 
   /**
    * 链表大小
@@ -255,45 +255,13 @@ class DoublyLinkedList {
   }
 
   /**
-   * 链表尾部添加
-   */
-  public append = (point: any): DoublyLinkedList => {
-    const node: DoublyPoint = new DoublyPoint({
-      element: point,
-    });
-    let currentNode: any = this.head;
-
-    // 为空
-    if(this.isEmpty()) {
-      this.head = node;
-      this.tail = node;
-      currentNode = node;
-    }else {
-      // 不为空
-      currentNode = this.head;
-
-      while(currentNode && currentNode.next) {
-        currentNode = currentNode.next;
-      }
-
-      currentNode.next = node;
-      node.prev = currentNode;
-      this.tail = node;
-    }
-
-    this.length ++;
-
-    return this;
-  }
-
-  /**
    * 正向打印链表
    */
   public print = (): string => {
     let currentNode: any = this.head;
     let result: string = '';
 
-    while(currentNode) {
+    while (currentNode) {
       result += `${currentNode.element}、`;
       currentNode = currentNode.next;
     }
@@ -308,12 +276,44 @@ class DoublyLinkedList {
     let currentNode: DoublyPoint = this.tail;
     let result: string = '';
 
-    while(currentNode) {
+    while (currentNode) {
       result += `${currentNode.element}、`;
       currentNode = currentNode.prev;
     }
 
     return result;
+  }
+
+  /**
+   * 链表尾部添加
+   */
+  public append = (point: any): DoublyLinkedList => {
+    const node: DoublyPoint = new DoublyPoint({
+      element: point,
+    });
+    let currentNode: any = this.head;
+
+    // 为空
+    if (this.isEmpty()) {
+      this.head = node;
+      this.tail = node;
+      currentNode = node;
+    } else {
+      // 不为空
+      currentNode = this.head;
+
+      while (currentNode && currentNode.next) {
+        currentNode = currentNode.next;
+      }
+
+      currentNode.next = node;
+      node.prev = currentNode;
+      this.tail = node;
+    }
+
+    this.length++;
+
+    return this;
   }
 
   /**
@@ -326,14 +326,14 @@ class DoublyLinkedList {
     let currentNode: any = this.tail;
 
     // 链表为空
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       this.head = node;
       this.tail = node;
       currentNode = node;
-    }else {
+    } else {
       currentNode = this.tail;
       // 不为空
-      while(currentNode && currentNode.prev) {
+      while (currentNode && currentNode.prev) {
         currentNode = currentNode.prev;
       }
 
@@ -342,7 +342,45 @@ class DoublyLinkedList {
       node.next = currentNode;
     }
 
-    this.length ++;
+    this.length++;
+
+    return this;
+  }
+
+  /**
+   * 任意位置添加
+   */
+  public insert = (
+    index: number,
+    point: any,
+  ): DoublyLinkedList => {
+    const node: DoublyPoint = new DoublyPoint({
+      element: point,
+    });
+    // 作优化, 正序or逆序遍历
+    let halfLength: number = this.length / 2;
+    let currentIndex: number = index > halfLength
+      ? this.length - 1
+      : 0;
+    let currentNode: any = index > halfLength
+      ? this.tail
+      : this.head;
+    let previousNode: any = null;
+
+    if(index > -1 && index < this.length) {
+      if(index > halfLength) {
+        // 逆序
+        while(currentIndex-- > index) {
+          currentNode = currentNode.prev;
+          previousNode = currentNode.next;
+        }
+
+        currentNode.next = node;
+        node.next = previousNode;
+      }else {
+        // 正序
+      }
+    }
 
     return this;
   }
@@ -353,5 +391,10 @@ doublylinkedlist.append('duan');
 doublylinkedlist.append('zhao');
 doublylinkedlist.append('yang');
 doublylinkedlist.prepend('prepend');
-// console.log(doublylinkedlist.size());
+doublylinkedlist.append('test1');
+doublylinkedlist.append('test2');
+doublylinkedlist.append('test3');
+doublylinkedlist.append('test4');
+doublylinkedlist.insert(6, 'insert');
+console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());
