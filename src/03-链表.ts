@@ -375,11 +375,26 @@ class DoublyLinkedList {
           previousNode = currentNode.next;
         }
 
+        // currentNode.next = node;
+        // node.next = previousNode;
         currentNode.next = node;
+        node.prev = currentNode;
         node.next = previousNode;
+        previousNode.prev = node;
       }else {
         // 正序
+        while (currentIndex++ < index) {
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+        }
+
+        currentNode.prev = node;
+        previousNode.next = node;
+        node.next = currentNode;
+        node.prev = previousNode;
       }
+
+      this.length ++;
     }
 
     return this;
@@ -396,5 +411,7 @@ doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
 doublylinkedlist.insert(6, 'insert');
+doublylinkedlist.insert(2, 'inserttwo');
+doublylinkedlist.insert(8, 'insertthree');
 console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());
