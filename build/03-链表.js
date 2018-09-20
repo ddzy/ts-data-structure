@@ -62,6 +62,7 @@ var LinkedList = /** @class */ (function () {
                 });
                 var currentNode = _this.head;
                 var previousNode = new Point({});
+                var currentIndex = 0;
                 // 第一项
                 if (index === 0) {
                     node.next = currentNode;
@@ -69,7 +70,7 @@ var LinkedList = /** @class */ (function () {
                 }
                 else {
                     // 任意位置
-                    while (index++ < _this.length) {
+                    while (currentIndex++ < index) {
                         previousNode = currentNode;
                         currentNode = currentNode.next;
                     }
@@ -89,9 +90,13 @@ var LinkedList = /** @class */ (function () {
         /**
          * 元素在链表的索引
          */
-        this.where = function (point) {
-            return -1;
-        };
+        // public where = (point: any): number => {
+        //   const currentNode: Point = this.head;
+        //   const currentIndex: number = 0;
+        //   while(currentNode && currentNode.element !== point) {
+        //   }
+        //   return -1;
+        // }
         /**
          * 移除特定位置项
          */
@@ -129,6 +134,18 @@ var LinkedList = /** @class */ (function () {
         this.size = function () {
             return _this.length;
         };
+        /**
+         * 打印链表元素
+         */
+        this.print = function () {
+            var currentNode = _this.head;
+            var result = '';
+            while (currentNode) {
+                result += currentNode.element + "\u3001";
+                currentNode = currentNode.next;
+            }
+            return result;
+        };
     }
     return LinkedList;
 }());
@@ -148,5 +165,7 @@ var linkedlist = new LinkedList({});
 linkedlist.append('duan');
 linkedlist.append('zhao');
 linkedlist.append('yang');
-linkedlist.append('haha').removeAt(1);
-console.log(linkedlist.size());
+linkedlist.append('hahah');
+linkedlist.insert(2, 'insert');
+// console.log(linkedlist.size());
+console.log(linkedlist.print());

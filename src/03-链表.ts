@@ -85,6 +85,7 @@ class LinkedList {
       });
       let currentNode: Point = this.head;
       let previousNode: Point = new Point({});
+      let currentIndex: number = 0;
 
       // 第一项
       if(index === 0) {
@@ -92,7 +93,7 @@ class LinkedList {
         this.head = node;
       }else {
         // 任意位置
-        while(index ++ < this.length) {
+        while(currentIndex ++ < index) {
           previousNode = currentNode;
           currentNode = currentNode.next;
         }
@@ -117,11 +118,16 @@ class LinkedList {
   /**
    * 元素在链表的索引
    */
-  public where = (point: any): number => {
-    
+  // public where = (point: any): number => {
+  //   const currentNode: Point = this.head;
+  //   const currentIndex: number = 0;
 
-    return -1;
-  }
+  //   while(currentNode && currentNode.element !== point) {
+
+  //   }
+
+  //   return -1;
+  // }
 
   /**
    * 移除特定位置项
@@ -165,6 +171,21 @@ class LinkedList {
   public size = (): number => {
     return this.length;
   }
+
+  /**
+   * 打印链表元素
+   */
+  public print = (): string => {
+    let currentNode: Point = this.head;
+    let result: string = '';
+
+    while(currentNode) {
+      result += `${currentNode.element}、`;
+      currentNode = currentNode.next;
+    }
+
+    return result;
+  }
 }
 
 /**
@@ -187,6 +208,9 @@ const linkedlist = new LinkedList({});
 linkedlist.append('duan');
 linkedlist.append('zhao');
 linkedlist.append('yang');
-linkedlist.append('haha').removeAt(1);
+linkedlist.append('hahah');
+linkedlist.insert(2, 'insert');
 
-console.log(linkedlist.size());
+
+// console.log(linkedlist.size());
+console.log(linkedlist.print());
