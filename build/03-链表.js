@@ -20,6 +20,14 @@
  */
 ;
 ;
+var Point = /** @class */ (function () {
+    function Point(props) {
+        this.element = '';
+        this.next = null;
+        this.element = props.element;
+    }
+    return Point;
+}());
 var LinkedList = /** @class */ (function () {
     function LinkedList(props) {
         var _this = this;
@@ -156,18 +164,43 @@ var LinkedList = /** @class */ (function () {
     }
     return LinkedList;
 }());
-/**
- * 链表 单个节点
- */
-var Point = /** @class */ (function () {
-    function Point(props) {
-        this.element = '';
-        this.next = null;
+;
+;
+var doublyPoint = /** @class */ (function () {
+    function doublyPoint(props) {
+        if (props === void 0) { props = {}; }
+        this.element = null;
         this.element = props.element;
-        this.next = props.next;
     }
-    return Point;
+    return doublyPoint;
 }());
-/**
- * 实例二: 双向链表
- */
+var doublyLinkedList = /** @class */ (function () {
+    function doublyLinkedList(props) {
+        if (props === void 0) { props = {}; }
+        var _this = this;
+        this.length = 0;
+        this.head = null;
+        this.tail = null;
+        /**
+         * 链表大小
+         */
+        this.size = function () {
+            return _this.length;
+        };
+        /**
+         * 链表是否为空
+         */
+        this.isEmpty = function () {
+            return _this.length === 0;
+        };
+        /**
+         * 链表尾部添加
+         */
+        this.append = function (point) {
+            if (_this.isEmpty()) {
+            }
+            return _this;
+        };
+    }
+    return doublyLinkedList;
+}());

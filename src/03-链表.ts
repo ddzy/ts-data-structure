@@ -20,16 +20,23 @@
 
 
 /**
- * 创建链表
+ * 实例一: 单链表
  */
-interface ILinkedListProps {
-
-};
+interface ILinkedListProps {};
 interface IPointProps {
   readonly element?: any,
   readonly next?: any,
 };
 
+class Point {
+  public element: any = '';
+
+  public next: any = null;
+
+  public constructor(props: IPointProps) {
+    this.element = props.element;
+  }
+}
 
 class LinkedList {
   private length: number = 0;
@@ -196,22 +203,61 @@ class LinkedList {
   }
 }
 
-/**
- * 链表 单个节点
- */
-class Point {
-  public element: any = '';
 
-  public next: any = null;
-
-  public constructor(props: IPointProps) {
-    this.element = props.element;
-    this.next = props.next;
-  }
-}
 
 
 
 /**
  * 实例二: 双向链表
  */
+interface IDoublyLinkedListProps {};
+interface IDoublyPointProps {
+  element?: any;
+};
+
+class doublyPoint {
+  public element: any = null;
+
+  public constructor(
+    props: IDoublyPointProps = {},
+  ) {
+    this.element = props.element;
+  }
+}
+
+class doublyLinkedList {
+  private length: number = 0
+
+  private head: any = null
+
+  private tail: any = null
+
+  public constructor(
+    props: IDoublyLinkedListProps = {},
+  ) {}
+
+  /**
+   * 链表大小
+   */
+  public size = (): number => {
+    return this.length;
+  }
+
+  /**
+   * 链表是否为空
+   */
+  public isEmpty = (): boolean => {
+    return this.length === 0;
+  }
+
+  /**
+   * 链表尾部添加
+   */
+  public append = (point: any): doublyLinkedList => {
+    if(this.isEmpty()) {
+      
+    }
+
+    return this;
+  }
+}
