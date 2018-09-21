@@ -243,6 +243,7 @@ class DoublyLinkedList {
 
   /**
    * 链表大小
+   * @returns number 
    */
   public size = (): number => {
     return this.length;
@@ -250,6 +251,7 @@ class DoublyLinkedList {
 
   /**
    * 链表是否为空
+   * @returns boolean 
    */
   public isEmpty = (): boolean => {
     return this.length === 0;
@@ -257,6 +259,7 @@ class DoublyLinkedList {
 
   /**
    * 正向打印链表
+   * @returns string 链表值组合
    */
   public print = (): string => {
     let currentNode: any = this.head;
@@ -272,6 +275,7 @@ class DoublyLinkedList {
 
   /**
    * 反向打印链表
+   * @returns string 链表值组合
    */
   public printReverse = (): string => {
     let currentNode: DoublyPoint = this.tail;
@@ -287,6 +291,8 @@ class DoublyLinkedList {
 
   /**
    * 指定值的索引
+   * @param point 指定的值
+   * @returns number 值对应索引
    */
   public where = (
     point: any,
@@ -307,6 +313,8 @@ class DoublyLinkedList {
 
   /**
    * 链表尾部添加
+   * @param point 添加的值
+   * @returns @this
    */
   public append = (point: any): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
@@ -339,6 +347,8 @@ class DoublyLinkedList {
 
   /**
    * 链表首部添加
+   * @param point 添加的值
+   * @returns @this
    */
   public prepend = (point: any): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
@@ -370,6 +380,9 @@ class DoublyLinkedList {
 
   /**
    * 任意位置添加
+   * @param index 插入的位置
+   * @param point 对应的值
+   * @returns @this
    */
   public insert = (
     index: number,
@@ -422,16 +435,18 @@ class DoublyLinkedList {
 
   /**
    * 指定值删除
+   * @param point 指定值
+   * @returns @this
    */
-  // public remove = (
-  //   point: any,
-  // ): DoublyLinkedList => {
-  //   const currentNode: DoublyPoint = this.head;
-  //   const previousNode: any = null;
-  //   const currentIndex: number = 0;
+  public remove = (
+    point: any,
+  ): DoublyLinkedList => {
+    const currentNode: DoublyPoint = this.head;
+    const previousNode: any = null;
+    const currentIndex: number = 0;
 
-  //   return this;
-  // }
+    return this;
+  }
 
 }
 
@@ -444,5 +459,4 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-console.log(doublylinkedlist.print());
-console.log(doublylinkedlist.where('duan'));
+

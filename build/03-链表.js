@@ -185,18 +185,21 @@ var DoublyLinkedList = /** @class */ (function () {
         this.tail = null;
         /**
          * 链表大小
+         * @returns number
          */
         this.size = function () {
             return _this.length;
         };
         /**
          * 链表是否为空
+         * @returns boolean
          */
         this.isEmpty = function () {
             return _this.length === 0;
         };
         /**
          * 正向打印链表
+         * @returns string 链表值组合
          */
         this.print = function () {
             var currentNode = _this.head;
@@ -209,6 +212,7 @@ var DoublyLinkedList = /** @class */ (function () {
         };
         /**
          * 反向打印链表
+         * @returns string 链表值组合
          */
         this.printReverse = function () {
             var currentNode = _this.tail;
@@ -221,6 +225,8 @@ var DoublyLinkedList = /** @class */ (function () {
         };
         /**
          * 指定值的索引
+         * @param point 指定的值
+         * @returns number 值对应索引
          */
         this.where = function (point) {
             var len = _this.length;
@@ -236,6 +242,8 @@ var DoublyLinkedList = /** @class */ (function () {
         };
         /**
          * 链表尾部添加
+         * @param point 添加的值
+         * @returns @this
          */
         this.append = function (point) {
             var node = new DoublyPoint({
@@ -263,6 +271,8 @@ var DoublyLinkedList = /** @class */ (function () {
         };
         /**
          * 链表首部添加
+         * @param point 添加的值
+         * @returns @this
          */
         this.prepend = function (point) {
             var node = new DoublyPoint({
@@ -290,6 +300,9 @@ var DoublyLinkedList = /** @class */ (function () {
         };
         /**
          * 任意位置添加
+         * @param index 插入的位置
+         * @param point 对应的值
+         * @returns @this
          */
         this.insert = function (index, point) {
             var node = new DoublyPoint({
@@ -331,6 +344,17 @@ var DoublyLinkedList = /** @class */ (function () {
             }
             return _this;
         };
+        /**
+         * 指定值删除
+         * @param point 指定值
+         * @returns @this
+         */
+        this.remove = function (point) {
+            var currentNode = _this.head;
+            var previousNode = null;
+            var currentIndex = 0;
+            return _this;
+        };
     }
     return DoublyLinkedList;
 }());
@@ -343,5 +367,3 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-console.log(doublylinkedlist.print());
-console.log(doublylinkedlist.where('duan'));
