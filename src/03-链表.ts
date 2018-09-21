@@ -230,6 +230,7 @@ class DoublyPoint {
 }
 
 class DoublyLinkedList {
+
   private length: number = 0
 
   private head: any = null
@@ -238,7 +239,7 @@ class DoublyLinkedList {
 
   public constructor(
     props: IDoublyLinkedListProps = {},
-  ) { }
+  ) {}
 
   /**
    * 链表大小
@@ -282,6 +283,26 @@ class DoublyLinkedList {
     }
 
     return result;
+  }
+
+  /**
+   * 指定值的索引
+   */
+  public where = (
+    point: any,
+  ): number => {
+    const len: number = this.length;
+    let currentNode: DoublyPoint = this.head;
+    let currentIndex: number = 0;
+
+    while(currentIndex++ < len) {
+      if(currentNode.element === point) {
+        return currentIndex - 1;
+      }
+      currentNode = currentNode.next;
+    }
+
+    return -1;
   }
 
   /**
@@ -398,6 +419,20 @@ class DoublyLinkedList {
 
     return this;
   }
+
+  /**
+   * 指定值删除
+   */
+  // public remove = (
+  //   point: any,
+  // ): DoublyLinkedList => {
+  //   const currentNode: DoublyPoint = this.head;
+  //   const previousNode: any = null;
+  //   const currentIndex: number = 0;
+
+  //   return this;
+  // }
+
 }
 
 const doublylinkedlist = new DoublyLinkedList();
@@ -409,9 +444,5 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-// doublylinkedlist.insert(6, 'insert');
-doublylinkedlist.insert(2, 'inserttwo');
-doublylinkedlist.insert(5, 'insertthree');
-// doublylinkedlist.insert(8, 'insertthree');
-console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());
+console.log(doublylinkedlist.where('duan'));

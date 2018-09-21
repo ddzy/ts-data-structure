@@ -220,6 +220,21 @@ var DoublyLinkedList = /** @class */ (function () {
             return result;
         };
         /**
+         * 指定值的索引
+         */
+        this.where = function (point) {
+            var len = _this.length;
+            var currentNode = _this.head;
+            var currentIndex = 0;
+            while (currentIndex++ < len) {
+                if (currentNode.element === point) {
+                    return currentIndex - 1;
+                }
+                currentNode = currentNode.next;
+            }
+            return -1;
+        };
+        /**
          * 链表尾部添加
          */
         this.append = function (point) {
@@ -328,9 +343,5 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-// doublylinkedlist.insert(6, 'insert');
-doublylinkedlist.insert(2, 'inserttwo');
-doublylinkedlist.insert(5, 'insertthree');
-// doublylinkedlist.insert(8, 'insertthree');
-console.log(doublylinkedlist.size());
 console.log(doublylinkedlist.print());
+console.log(doublylinkedlist.where('duan'));
