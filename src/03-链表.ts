@@ -314,7 +314,7 @@ class DoublyLinkedList {
   /**
    * 链表尾部添加
    * @param point 添加的值
-   * @returns @this
+   * @returns this
    */
   public append = (point: any): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
@@ -348,7 +348,7 @@ class DoublyLinkedList {
   /**
    * 链表首部添加
    * @param point 添加的值
-   * @returns @this
+   * @returns this
    */
   public prepend = (point: any): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
@@ -382,7 +382,7 @@ class DoublyLinkedList {
    * 任意位置添加
    * @param index 插入的位置
    * @param point 对应的值
-   * @returns @this
+   * @returns this
    */
   public insert = (
     index: number,
@@ -436,7 +436,7 @@ class DoublyLinkedList {
   /**
    * 指定值删除
    * @param point 指定值
-   * @returns @this
+   * @returns this
    */
   public remove = (
     point: any,

@@ -243,7 +243,7 @@ var DoublyLinkedList = /** @class */ (function () {
         /**
          * 链表尾部添加
          * @param point 添加的值
-         * @returns @this
+         * @returns this
          */
         this.append = function (point) {
             var node = new DoublyPoint({
@@ -272,7 +272,7 @@ var DoublyLinkedList = /** @class */ (function () {
         /**
          * 链表首部添加
          * @param point 添加的值
-         * @returns @this
+         * @returns this
          */
         this.prepend = function (point) {
             var node = new DoublyPoint({
@@ -302,7 +302,7 @@ var DoublyLinkedList = /** @class */ (function () {
          * 任意位置添加
          * @param index 插入的位置
          * @param point 对应的值
-         * @returns @this
+         * @returns this
          */
         this.insert = function (index, point) {
             var node = new DoublyPoint({
@@ -347,7 +347,7 @@ var DoublyLinkedList = /** @class */ (function () {
         /**
          * 指定值删除
          * @param point 指定值
-         * @returns @this
+         * @returns this
          */
         this.remove = function (point) {
             var currentNode = _this.head;
