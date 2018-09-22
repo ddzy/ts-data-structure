@@ -407,12 +407,6 @@ var DoublyLinkedList = /** @class */ (function () {
     }
     return DoublyLinkedList;
 }());
-var doublylinkedlist = new DoublyLinkedList();
-doublylinkedlist.append('duan');
-doublylinkedlist.append('zhao');
-doublylinkedlist.append('yang');
-doublylinkedlist.prepend('prepend');
-doublylinkedlist.append('test1');
-doublylinkedlist.append('test2');
-doublylinkedlist.append('test3');
-doublylinkedlist.append('test4');
+/**
+ * 实例三: 循环链表
+ */
