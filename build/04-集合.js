@@ -7,8 +7,8 @@
  */
 ;
 var Set = /** @class */ (function () {
-    function Set(props) {
-        if (props === void 0) { props = {}; }
+    function Set(_props) {
+        if (_props === void 0) { _props = {}; }
         var _this = this;
         this.items = {};
         /**
@@ -65,10 +65,37 @@ var Set = /** @class */ (function () {
         this.keys = function () {
             return Object.keys(_this.items);
         };
+        /**
+         * 并集
+         */
+        this.union = function (targetSetValues) {
+            var newSet = [];
+            var values = _this.values();
+            // for (const key in values) {
+            //   if (
+            //     Reflect.has(values, key)
+            //       && !Reflect.has(targetSet.values(), key)
+            //   ) {
+            //     const element = Reflect.get(values, key);
+            //     Reflect.set(newSet, element, element);
+            //   }
+            // }
+            for (var _i = 0, values_1 = values; _i < values_1.length; _i++) {
+                var key = values_1[_i];
+                targetSetValues.indexOf(key) === -1
+                    && console.log(key);
+            }
+            return newSet;
+        };
     }
     return Set;
 }());
-var set = new Set({});
+var setOne = new Set({});
 // console.log(set.has('setset'));
-set.add('duan').add('zhao').add('yang');
-console.log(set.values());
+// set.add('duan').add('zhao').add('yang');
+// console.log(set.values());
+var setTwo = new Set({});
+setOne.add(1).add(2).add(3).add(4);
+setTwo.add(2).add(3).add(6).add(5);
+// console.log(setTwo.values());
+setOne.union(setTwo.values());

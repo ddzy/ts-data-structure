@@ -16,7 +16,7 @@ class Set {
   private items: object = {}
 
   public constructor(
-    props: ISetProps = {}
+    _props: ISetProps = {}
   ) {}
 
   /**
@@ -100,10 +100,45 @@ class Set {
   public keys = (): string[] => {
     return Object.keys(this.items);
   }
+
+  /**
+   * 并集
+   */
+  public union = (
+    targetSetValues: any[],
+  ): object => {
+    const newSet: string[] | number[] = []; 
+    const values: string[] | number[] = this.values();
+
+    // for (const key in values) {
+    //   if (
+    //     Reflect.has(values, key)
+    //       && !Reflect.has(targetSet.values(), key)
+    //   ) {
+    //     const element = Reflect.get(values, key);
+    //     Reflect.set(newSet, element, element);
+    //   }
+    // }
+    for (const key of values) {
+      targetSetValues.indexOf(key) === -1
+        && console.log(key);
+    }
+
+    return newSet;
+  }
+
 }
 
 
-const set = new Set({});
+const setOne = new Set({});
 // console.log(set.has('setset'));
-set.add('duan').add('zhao').add('yang');
-console.log(set.values());
+// set.add('duan').add('zhao').add('yang');
+// console.log(set.values());
+const setTwo = new Set({});
+
+setOne.add(1).add(2).add(3).add(4);
+setTwo.add(2).add(3).add(6).add(5);
+
+// console.log(setTwo.values());
+setOne.union(setTwo.values());
+
