@@ -81,8 +81,9 @@ class Map {
    * @returns Number 
    */
   public size = (): number => {
-    
-    return 1;
+    return Reflect
+      .ownKeys(this.items)
+      .length;
   }
 
   /**
@@ -108,5 +109,4 @@ class Map {
 const mapOne = new Map({});
 
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-mapOne.clear();
-console.log(mapOne.get('zhao'));
+console.log(mapOne.size());

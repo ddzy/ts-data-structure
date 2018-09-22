@@ -59,7 +59,9 @@ var Map = /** @class */ (function () {
          * @returns Number
          */
         this.size = function () {
-            return 1;
+            return Reflect
+                .ownKeys(_this.items)
+                .length;
         };
         /**
          * 字典 键名
@@ -80,5 +82,4 @@ var Map = /** @class */ (function () {
 }());
 var mapOne = new Map({});
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-mapOne.clear();
-console.log(mapOne.get('zhao'));
+console.log(mapOne.size());
