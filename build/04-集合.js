@@ -48,3 +48,5 @@ var Set = /** @class */ (function () {
     }
     return Set;
 }());
+var set = new Set({});
+set.has('');

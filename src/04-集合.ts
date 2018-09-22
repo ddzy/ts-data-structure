@@ -15,7 +15,7 @@ class Set {
 
   private items: object = {}
 
-  private constructor(
+  public constructor(
     props: ISetProps = {}
   ) {}
 
@@ -68,3 +68,7 @@ class Set {
     
   }
 }
+
+
+const set = new Set({});
+set.has('');
