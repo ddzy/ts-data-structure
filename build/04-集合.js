@@ -68,34 +68,19 @@ var Set = /** @class */ (function () {
         /**
          * 并集
          */
-        this.union = function (targetSetValues) {
-            var newSet = [];
-            var values = _this.values();
-            // for (const key in values) {
-            //   if (
-            //     Reflect.has(values, key)
-            //       && !Reflect.has(targetSet.values(), key)
-            //   ) {
-            //     const element = Reflect.get(values, key);
-            //     Reflect.set(newSet, element, element);
-            //   }
-            // }
-            for (var _i = 0, values_1 = values; _i < values_1.length; _i++) {
-                var key = values_1[_i];
-                targetSetValues.indexOf(key) === -1
-                    && console.log(key);
-            }
+        this.union = function (targetSet) {
+            var newSet = new Set({});
+            var currentSetValues = _this.values();
+            var targetSetValues = targetSet.values();
+            currentSetValues.forEach(function (item) { return newSet.add(item); });
+            targetSetValues.forEach(function (item) { return newSet.add(item); });
             return newSet;
         };
     }
     return Set;
 }());
 var setOne = new Set({});
-// console.log(set.has('setset'));
-// set.add('duan').add('zhao').add('yang');
-// console.log(set.values());
 var setTwo = new Set({});
 setOne.add(1).add(2).add(3).add(4);
 setTwo.add(2).add(3).add(6).add(5);
-// console.log(setTwo.values());
-setOne.union(setTwo.values());
+console.log(setOne.union(setTwo).values());
