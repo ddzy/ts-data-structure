@@ -62,8 +62,8 @@ class Map {
   public delete = (
     key: string,
   ): boolean => {
-    
-    return false;
+    return this.has(key)
+      && Reflect.deleteProperty(this.items, key);
   }
 
   /**

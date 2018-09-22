@@ -43,7 +43,8 @@ var Map = /** @class */ (function () {
          * @returns Boolean
          */
         this.delete = function (key) {
-            return false;
+            return _this.has(key)
+                && Reflect.deleteProperty(_this.items, key);
         };
         /**
          * 清空字典
