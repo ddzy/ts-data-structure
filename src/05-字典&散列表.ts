@@ -13,6 +13,8 @@
 interface IMapProps {}
 
 class Map {
+  private items: object = {}
+
   public constructor(_props: IMapProps = {}) {}
 
   /**
@@ -23,8 +25,7 @@ class Map {
   public has = (
     key: string
   ): boolean => {
-    
-    return false;
+    return Reflect.has(this.items, key);
   }
 
   /**
@@ -100,3 +101,8 @@ class Map {
     return [];
   }
 }
+
+
+const mapOne = new Map({});
+
+console.log(mapOne.has('duan'));

@@ -10,13 +10,14 @@ var Map = /** @class */ (function () {
     function Map(_props) {
         if (_props === void 0) { _props = {}; }
         var _this = this;
+        this.items = {};
         /**
          * 对应的key的键是否存在
          * @param key 键名
          * @returns Boolean
          */
         this.has = function (key) {
-            return false;
+            return Reflect.has(_this.items, key);
         };
         /**
          * 添加新元素
@@ -73,3 +74,5 @@ var Map = /** @class */ (function () {
     }
     return Map;
 }());
+var mapOne = new Map({});
+console.log(mapOne.has('duan'));
