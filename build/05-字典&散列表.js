@@ -35,6 +35,7 @@ var Map = /** @class */ (function () {
          * @returns 键值
          */
         this.get = function (key) {
+            return Reflect.get(_this.items, key);
         };
         /**
          * 删除键值对
@@ -78,3 +79,4 @@ var Map = /** @class */ (function () {
 var mapOne = new Map({});
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
 console.log(mapOne.has('duan'));
+console.log(mapOne.get('zhao'));
