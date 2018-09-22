@@ -22,21 +22,37 @@ class Set {
   /**
    * 添加新条目
    */
-  public add = (item: any) => {
-    
+  public add = (
+    item: string | number,
+  ): Set => {
+    !this.has(item)
+      && Reflect.set(
+        this.items,
+        item,
+        item,
+      )
+
+    return this;
   }
 
   /**
    * 移除条目
    */
-  public delete = () => {
-
+  public delete = (
+    item: string | number,
+  ): boolean => {
+    return Reflect.deleteProperty(
+      this.items,
+      item,
+    );
   }
 
   /**
    * 集合是否包含某条目
    */
-  public has = (item: any) => {
+  public has = (
+    item: string | number,
+  ): boolean => {
     return Reflect.has(
       this.items,
       item,
@@ -74,4 +90,6 @@ class Set {
 
 
 const set = new Set({});
-console.log(set.has('setset'));
+// console.log(set.has('setset'));
+set.add('duan');
+console.log(set.delete('duan'));

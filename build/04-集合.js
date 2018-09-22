@@ -15,11 +15,15 @@ var Set = /** @class */ (function () {
          * 添加新条目
          */
         this.add = function (item) {
+            !_this.has(item)
+                && Reflect.set(_this.items, item, item);
+            return _this;
         };
         /**
          * 移除条目
          */
-        this.delete = function () {
+        this.delete = function (item) {
+            return Reflect.deleteProperty(_this.items, item);
         };
         /**
          * 集合是否包含某条目
@@ -51,4 +55,6 @@ var Set = /** @class */ (function () {
     return Set;
 }());
 var set = new Set({});
-console.log(set.has('setset'));
+// console.log(set.has('setset'));
+set.add('duan');
+console.log(set.delete('duan'));
