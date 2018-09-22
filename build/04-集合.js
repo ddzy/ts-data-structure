@@ -35,26 +35,40 @@ var Set = /** @class */ (function () {
          * 移除集合的所有条目
          */
         this.clear = function () {
+            return Reflect
+                .set(_this.items, {})
+                && _this;
         };
         /**
          * 条目总数
          */
         this.size = function () {
+            return Object
+                .keys(_this.items)
+                .length;
         };
         /**
          * 条目的值数组
          */
         this.values = function () {
+            var items = _this.items;
+            var result = [];
+            for (var key in items) {
+                Reflect.has(items, key)
+                    && result.push(Reflect.get(items, key));
+            }
+            return result;
         };
         /**
          * 条目键名的数组
          */
         this.keys = function () {
+            return Object.keys(_this.items);
         };
     }
     return Set;
 }());
 var set = new Set({});
 // console.log(set.has('setset'));
-set.add('duan');
-console.log(set.delete('duan'));
+set.add('duan').add('zhao').add('yang');
+console.log(set.values());

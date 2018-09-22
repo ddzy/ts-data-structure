@@ -62,34 +62,48 @@ class Set {
   /**
    * 移除集合的所有条目
    */
-  public clear = () => {
-    
+  public clear = (): Set => {
+    return Reflect
+      .set(this.items, {})
+      && this;
   }
 
   /**
    * 条目总数
    */
-  public size = () => {
-    
+  public size = (): number => {
+    return Object
+      .keys(this.items)
+      .length;
   }
 
   /**
    * 条目的值数组
    */
-  public values = () => {
-    
+  public values = (): any[] => {
+    const items: object = this.items;
+    const result: any[] = [];
+
+    for(const key in items) {
+      Reflect.has(items, key)
+        && result.push(
+          Reflect.get(items, key)
+        )
+    }
+
+    return result;
   }
 
   /**
    * 条目键名的数组
    */
-  public keys = () => {
-    
+  public keys = (): string[] => {
+    return Object.keys(this.items);
   }
 }
 
 
 const set = new Set({});
 // console.log(set.has('setset'));
-set.add('duan');
-console.log(set.delete('duan'));
+set.add('duan').add('zhao').add('yang');
+console.log(set.values());
