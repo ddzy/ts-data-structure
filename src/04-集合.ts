@@ -12,6 +12,9 @@
 interface ISetProps {};
 
 class Set {
+
+  private items: object = {}
+
   private constructor(
     props: ISetProps = {}
   ) {}
@@ -19,7 +22,7 @@ class Set {
   /**
    * 添加新条目
    */
-  public add = () => {
+  public add = (item: any) => {
     
   }
 
@@ -27,13 +30,13 @@ class Set {
    * 移除条目
    */
   public delete = () => {
-    
+
   }
 
   /**
    * 集合是否包含某条目
    */
-  public has = (origin: any) => {
+  public has = (item: any) => {
     
   }
 

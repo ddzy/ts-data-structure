@@ -9,10 +9,11 @@
 var Set = /** @class */ (function () {
     function Set(props) {
         if (props === void 0) { props = {}; }
+        this.items = {};
         /**
          * 添加新条目
          */
-        this.add = function () {
+        this.add = function (item) {
         };
         /**
          * 移除条目
@@ -22,7 +23,7 @@ var Set = /** @class */ (function () {
         /**
          * 集合是否包含某条目
          */
-        this.has = function (origin) {
+        this.has = function (item) {
         };
         /**
          * 移除集合的所有条目
