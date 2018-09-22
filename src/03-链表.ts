@@ -493,10 +493,17 @@ class DoublyLinkedList {
           ) {
             currentNode = currentNode.next;
           }
+
           currentNode.prev.next = currentNode.next;
           currentNode.next.prev = currentNode.prev;
         }else {
           // 逆序
+          while(currentIndex-- > index) {
+            currentNode = currentNode.prev;
+          }
+          
+          currentNode.next.prev = currentNode.prev;
+          currentNode.prev.next = currentNode.next;
         }
       }
     }
@@ -515,6 +522,6 @@ doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
 console.log(doublylinkedlist.print());
-doublylinkedlist.removeAt(3);
+doublylinkedlist.removeAt(5);
 console.log(doublylinkedlist.print());
 
