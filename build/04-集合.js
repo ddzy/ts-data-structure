@@ -9,6 +9,7 @@
 var Set = /** @class */ (function () {
     function Set(props) {
         if (props === void 0) { props = {}; }
+        var _this = this;
         this.items = {};
         /**
          * 添加新条目
@@ -24,6 +25,7 @@ var Set = /** @class */ (function () {
          * 集合是否包含某条目
          */
         this.has = function (item) {
+            return Reflect.has(_this.items, item);
         };
         /**
          * 移除集合的所有条目
@@ -49,4 +51,4 @@ var Set = /** @class */ (function () {
     return Set;
 }());
 var set = new Set({});
-set.has('');
+console.log(set.has('setset'));

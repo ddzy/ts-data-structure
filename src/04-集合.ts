@@ -37,7 +37,10 @@ class Set {
    * 集合是否包含某条目
    */
   public has = (item: any) => {
-    
+    return Reflect.has(
+      this.items,
+      item,
+    );
   }
 
   /**
@@ -71,4 +74,4 @@ class Set {
 
 
 const set = new Set({});
-set.has('');
+console.log(set.has('setset'));
