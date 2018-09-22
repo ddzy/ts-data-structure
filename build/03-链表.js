@@ -386,6 +386,11 @@ var DoublyLinkedList = /** @class */ (function () {
                 else {
                     if (index < halfLength) {
                         // 正序
+                        while (currentIndex++ < index) {
+                            currentNode = currentNode.next;
+                        }
+                        currentNode.prev.next = currentNode.next;
+                        currentNode.next.prev = currentNode.prev;
                     }
                     else {
                         // 逆序
@@ -407,5 +412,5 @@ doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
 console.log(doublylinkedlist.print());
-doublylinkedlist.removeAt(7);
+doublylinkedlist.removeAt(3);
 console.log(doublylinkedlist.print());
