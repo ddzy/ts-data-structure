@@ -68,7 +68,7 @@ var Map = /** @class */ (function () {
          * @returns string[] 键名数组
          */
         this.keys = function () {
-            return [];
+            return Reflect.ownKeys(_this.items);
         };
         /**
          * 字典 键值
@@ -82,4 +82,4 @@ var Map = /** @class */ (function () {
 }());
 var mapOne = new Map({});
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.size());
+console.log(mapOne.keys());

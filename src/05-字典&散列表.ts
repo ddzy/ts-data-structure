@@ -91,8 +91,7 @@ class Map {
    * @returns string[] 键名数组
    */
   public keys = (): any[] => {
-    
-    return [];
+    return Reflect.ownKeys(this.items);
   }
 
   /**
@@ -109,4 +108,4 @@ class Map {
 const mapOne = new Map({});
 
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.size());
+console.log(mapOne.keys());
