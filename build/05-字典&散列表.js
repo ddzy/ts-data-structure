@@ -51,7 +51,8 @@ var Map = /** @class */ (function () {
          * @returns Boolean
          */
         this.clear = function () {
-            return false;
+            _this.items = {};
+            return _this;
         };
         /**
          * 字典元素数量
@@ -79,5 +80,5 @@ var Map = /** @class */ (function () {
 }());
 var mapOne = new Map({});
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.has('duan'));
+mapOne.clear();
 console.log(mapOne.get('zhao'));
