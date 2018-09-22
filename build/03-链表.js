@@ -364,7 +364,7 @@ var DoublyLinkedList = /** @class */ (function () {
             return _this;
         };
         /**
-         * 指定位置删除
+         * 任意位置删除
          */
         this.removeAt = function (index) {
             if (index > -1 && index < _this.length) {
@@ -416,6 +416,3 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-console.log(doublylinkedlist.print());
-doublylinkedlist.removeAt(5);
-console.log(doublylinkedlist.print());

@@ -465,7 +465,7 @@ class DoublyLinkedList {
   }
 
   /**
-   * 指定位置删除
+   * 任意位置删除
    */
   public removeAt = (
     index: number,
@@ -501,7 +501,7 @@ class DoublyLinkedList {
           while(currentIndex-- > index) {
             currentNode = currentNode.prev;
           }
-          
+
           currentNode.next.prev = currentNode.prev;
           currentNode.prev.next = currentNode.next;
         }
@@ -521,7 +521,4 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
-console.log(doublylinkedlist.print());
-doublylinkedlist.removeAt(5);
-console.log(doublylinkedlist.print());
 
