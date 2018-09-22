@@ -120,7 +120,20 @@ class Set {
   /**
    * 交集
    */
-  
+  public intersection = (
+    targetSet: Set,
+  ): Set => {
+    const newSet: Set = new Set({});
+    const currentSetValues: string[] | number[] = this.values();
+    const targetSetValues: any[] = targetSet.values();
+
+    for (const key of currentSetValues) {
+      targetSetValues.indexOf(key) !== -1
+        && newSet.add(key);
+    }
+
+    return newSet;
+  }
 
 }
 
@@ -129,8 +142,9 @@ const setOne = new Set({});
 
 const setTwo = new Set({});
 
-setOne.add(1).add(2).add(3).add(4);
+setOne.add(1).add(2).add(3).add(4).add(5);
 setTwo.add(2).add(3).add(6).add(5);
 
 console.log(setOne.union(setTwo).values());
+console.log(setOne.intersection(setTwo).values());
 

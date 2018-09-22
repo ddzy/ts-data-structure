@@ -7,7 +7,7 @@
  */
 ;
 var Stack = /** @class */ (function () {
-    function Stack(props) {
+    function Stack(_props) {
         var _this = this;
         /**
          * 添加一个or多个元素到栈顶

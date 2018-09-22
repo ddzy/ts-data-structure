@@ -29,7 +29,7 @@ var Point = /** @class */ (function () {
     return Point;
 }());
 var LinkedList = /** @class */ (function () {
-    function LinkedList(props) {
+    function LinkedList(_props) {
         var _this = this;
         this.length = 0;
         // 头结点引用
@@ -177,8 +177,8 @@ var DoublyPoint = /** @class */ (function () {
     return DoublyPoint;
 }());
 var DoublyLinkedList = /** @class */ (function () {
-    function DoublyLinkedList(props) {
-        if (props === void 0) { props = {}; }
+    function DoublyLinkedList(_props) {
+        if (_props === void 0) { _props = {}; }
         var _this = this;
         this.length = 0;
         this.head = null;

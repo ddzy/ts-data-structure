@@ -21,7 +21,7 @@ class Stack {
 
   private items: any[]
 
-  constructor(props: IStackProps) {
+  constructor(_props: IStackProps) {
     this.items = [];
   }
 

@@ -44,7 +44,7 @@ class LinkedList {
   // 头结点引用
   private head: any = null;
 
-  public constructor(props: ILinkedListProps) { }
+  public constructor(_props: ILinkedListProps) { }
 
   /**
    * 链表尾部添加项
@@ -238,7 +238,7 @@ class DoublyLinkedList {
   private tail: any = null
 
   public constructor(
-    props: IDoublyLinkedListProps = {},
+    _props: IDoublyLinkedListProps = {},
   ) { }
 
   /**

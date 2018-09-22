@@ -76,11 +76,26 @@ var Set = /** @class */ (function () {
             targetSetValues.forEach(function (item) { return newSet.add(item); });
             return newSet;
         };
+        /**
+         * 交集
+         */
+        this.intersection = function (targetSet) {
+            var newSet = new Set({});
+            var currentSetValues = _this.values();
+            var targetSetValues = targetSet.values();
+            for (var _i = 0, currentSetValues_1 = currentSetValues; _i < currentSetValues_1.length; _i++) {
+                var key = currentSetValues_1[_i];
+                targetSetValues.indexOf(key) !== -1
+                    && newSet.add(key);
+            }
+            return newSet;
+        };
     }
     return Set;
 }());
 var setOne = new Set({});
 var setTwo = new Set({});
-setOne.add(1).add(2).add(3).add(4);
+setOne.add(1).add(2).add(3).add(4).add(5);
 setTwo.add(2).add(3).add(6).add(5);
 console.log(setOne.union(setTwo).values());
+console.log(setOne.intersection(setTwo).values());
