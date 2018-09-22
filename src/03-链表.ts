@@ -239,7 +239,7 @@ class DoublyLinkedList {
 
   public constructor(
     props: IDoublyLinkedListProps = {},
-  ) {}
+  ) { }
 
   /**
    * 链表大小
@@ -301,8 +301,8 @@ class DoublyLinkedList {
     let currentNode: DoublyPoint = this.head;
     let currentIndex: number = 0;
 
-    while(currentIndex++ < len) {
-      if(currentNode.element === point) {
+    while (currentIndex++ < len) {
+      if (currentNode.element === point) {
         return currentIndex - 1;
       }
       currentNode = currentNode.next;
@@ -316,7 +316,9 @@ class DoublyLinkedList {
    * @param point 添加的值
    * @returns this
    */
-  public append = (point: any): DoublyLinkedList => {
+  public append = (
+    point: any
+  ): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
       element: point,
     });
@@ -350,7 +352,9 @@ class DoublyLinkedList {
    * @param point 添加的值
    * @returns this
    */
-  public prepend = (point: any): DoublyLinkedList => {
+  public prepend = (
+    point: any
+  ): DoublyLinkedList => {
     const node: DoublyPoint = new DoublyPoint({
       element: point,
     });
@@ -401,10 +405,10 @@ class DoublyLinkedList {
       : this.head;
     let previousNode: any = null;
 
-    if(index > -1 && index < this.length) {
-      if(index > halfLength) {
+    if (index > -1 && index < this.length) {
+      if (index > halfLength) {
         // 逆序
-        while(currentIndex-- > index) {
+        while (currentIndex-- > index) {
           currentNode = currentNode.prev;
           previousNode = currentNode.prev;
         }
@@ -414,7 +418,7 @@ class DoublyLinkedList {
         node.prev = previousNode;
         previousNode.next = node;
 
-      }else {
+      } else {
         // 正序
         while (currentIndex++ < index) {
           previousNode = currentNode;
@@ -427,7 +431,7 @@ class DoublyLinkedList {
         node.prev = previousNode;
       }
 
-      this.length ++;
+      this.length++;
     }
 
     return this;
@@ -441,13 +445,58 @@ class DoublyLinkedList {
   public remove = (
     point: any,
   ): DoublyLinkedList => {
-    const currentNode: DoublyPoint = this.head;
-    const previousNode: any = null;
-    const currentIndex: number = 0;
+    let currentNode: DoublyPoint = this.head;
+    let previousNode: any = null;
+
+    while (
+      currentNode
+      && currentNode.next
+    ) {
+      if (currentNode.element === point) {
+        previousNode.next = currentNode.next;
+        currentNode.prev = previousNode;
+      }
+
+      currentNode = currentNode.next;
+      previousNode = currentNode.prev;
+    }
 
     return this;
   }
 
+  /**
+   * 指定位置删除
+   */
+  public removeAt = (
+    index: number,
+  ): DoublyLinkedList => {
+    if (index > -1 && index < this.length) {
+      let halfLength: number = this.length / 2;
+      let currentIndex: number = index < halfLength
+        ? 0
+        : this.length - 1;
+      let currentNode: any = index < halfLength
+        ? this.head
+        : this.tail;
+      let previousNode: any = null;
+
+      if (index === 0) {
+        this.head = currentNode.next;
+      }else if(index === this.length - 1) {
+        this.tail = currentNode.prev;
+        this.tail.next = null;
+      }else {
+        if(index < halfLength) {
+          // 正序
+
+        }else {
+          // 逆序
+        }
+      }
+    }
+
+    return this;
+  }
 }
 
 const doublylinkedlist = new DoublyLinkedList();
@@ -459,4 +508,7 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
+console.log(doublylinkedlist.print());
+doublylinkedlist.removeAt(7);
+console.log(doublylinkedlist.print());
 

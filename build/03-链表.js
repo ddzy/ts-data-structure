@@ -352,7 +352,46 @@ var DoublyLinkedList = /** @class */ (function () {
         this.remove = function (point) {
             var currentNode = _this.head;
             var previousNode = null;
-            var currentIndex = 0;
+            while (currentNode
+                && currentNode.next) {
+                if (currentNode.element === point) {
+                    previousNode.next = currentNode.next;
+                    currentNode.prev = previousNode;
+                }
+                currentNode = currentNode.next;
+                previousNode = currentNode.prev;
+            }
+            return _this;
+        };
+        /**
+         * 指定位置删除
+         */
+        this.removeAt = function (index) {
+            if (index > -1 && index < _this.length) {
+                var halfLength = _this.length / 2;
+                var currentIndex = index < halfLength
+                    ? 0
+                    : _this.length - 1;
+                var currentNode = index < halfLength
+                    ? _this.head
+                    : _this.tail;
+                var previousNode = null;
+                if (index === 0) {
+                    _this.head = currentNode.next;
+                }
+                else if (index === _this.length - 1) {
+                    _this.tail = currentNode.prev;
+                    _this.tail.next = null;
+                }
+                else {
+                    if (index < halfLength) {
+                        // 正序
+                    }
+                    else {
+                        // 逆序
+                    }
+                }
+            }
             return _this;
         };
     }
@@ -367,3 +406,6 @@ doublylinkedlist.append('test1');
 doublylinkedlist.append('test2');
 doublylinkedlist.append('test3');
 doublylinkedlist.append('test4');
+console.log(doublylinkedlist.print());
+doublylinkedlist.removeAt(7);
+console.log(doublylinkedlist.print());
