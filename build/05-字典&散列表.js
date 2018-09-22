@@ -26,6 +26,7 @@ var Map = /** @class */ (function () {
          * @returns this
          */
         this.set = function (key, value) {
+            Reflect.set(_this.items, key, value);
             return _this;
         };
         /**
@@ -75,4 +76,5 @@ var Map = /** @class */ (function () {
     return Map;
 }());
 var mapOne = new Map({});
+mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
 console.log(mapOne.has('duan'));

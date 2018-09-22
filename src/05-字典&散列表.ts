@@ -38,7 +38,8 @@ class Map {
     key: string,
     value: any,
   ): Map => {
-    
+    Reflect.set(this.items, key, value);
+
     return this;
   }
 
@@ -105,4 +106,5 @@ class Map {
 
 const mapOne = new Map({});
 
+mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
 console.log(mapOne.has('duan'));
