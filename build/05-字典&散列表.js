@@ -75,11 +75,19 @@ var Map = /** @class */ (function () {
          * @returns any[] 键值数组
          */
         this.values = function () {
-            return [];
+            var result = [];
+            var items = _this.items;
+            for (var key in items) {
+                if (items.hasOwnProperty(key)) {
+                    var element = Reflect.get(items, key);
+                    result.push(element);
+                }
+            }
+            return result;
         };
     }
     return Map;
 }());
 var mapOne = new Map({});
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.keys());
+console.log(mapOne.values());

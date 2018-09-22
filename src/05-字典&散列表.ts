@@ -99,8 +99,17 @@ class Map {
    * @returns any[] 键值数组
    */
   public values = (): any[] => {
-    
-    return [];
+    const result: any[] = [];
+    const items: object = this.items;
+
+    for (const key in items) {
+      if (items.hasOwnProperty(key)) {
+        const element = Reflect.get(items, key);
+        result.push(element);
+      }
+    }
+
+    return result;
   }
 }
 
@@ -108,4 +117,4 @@ class Map {
 const mapOne = new Map({});
 
 mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.keys());
+console.log(mapOne.values());
