@@ -241,6 +241,13 @@ class DoublyLinkedList {
     _props: IDoublyLinkedListProps = {},
   ) { }
 
+
+  public isString = (
+    str: any,
+  ): boolean => {
+    return typeof str === 'string'; 
+  }
+
   
   /**
    * 头指针
@@ -311,9 +318,9 @@ class DoublyLinkedList {
     let currentIndex: number = 0;
 
     while (currentIndex++ < len) {
-      if (currentNode.element === point) {
-        return currentIndex - 1;
-      }
+      // if (currentNode.element === point) {
+      //   return currentIndex - 1;
+      // }
       currentNode = currentNode.next;
     }
 
@@ -459,13 +466,12 @@ class DoublyLinkedList {
 
     while (
       currentNode
-      && currentNode.next
+      && previousNode
     ) {
       if (currentNode.element === point) {
-        previousNode.next = currentNode.next;
-        currentNode.prev = previousNode;
+        currentNode.prev.next = currentNode.next;
+        currentNode.next.prev = currentNode.prev;
       }
-
       currentNode = currentNode.next;
       previousNode = currentNode.prev;
     }
@@ -522,21 +528,15 @@ class DoublyLinkedList {
 }
 
 
-// const double = new DoublyLinkedList();
 
-// double
-//   .append({
-//     key: 'name',
-//     value: 'duan',
-//   })
-//   .append({
-//     key: 'age',
-//     value: 20,
-//   })
+const double = new DoublyLinkedList();
 
-// console.log(double.getHead());
-/**
- * 实例三: 循环链表
- */
+double.append('duan').append('zhao')
 
+// console.log(double.print());
+
+// double.removeAt(double.where('duan'));
+double.remove('duan');
+
+console.log(double.print()) 
 

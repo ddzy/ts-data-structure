@@ -302,7 +302,7 @@ class DetachHashMap {
     const keyPosition: number = this.loseloseHashCode(key);
     const doublyLinkedList: DoublyLinkedList = new DoublyLinkedList({});
 
-    // 如果为空
+    // 空链表
     if(this.isKeyEmpty(key)) {
       Reflect.set(
         this.table,
@@ -348,15 +348,37 @@ class DetachHashMap {
 
     return null;
   }
+  
+  public delete(
+    key: string,
+  ): DetachHashMap {
+    const keyPosition: number = this.loseloseHashCode(key);
+
+    // 非空
+    if(!this.isKeyEmpty(key)) {
+      const keyLinkList: DoublyLinkedList = Reflect.get(
+        this.table,
+        keyPosition,
+      );
+      let currentNode: DoublyPoint = keyLinkList.getHead();
+
+      while(currentNode) {
+        if(currentNode.element.key === key) {
+          // keyLinkList.remove(currentNode.element);
+        }
+
+        currentNode = currentNode.next;
+      }
+    }
+
+    return this;
+  }
 }
 
 
 const detachHashMap: DetachHashMap = new DetachHashMap();
 
 detachHashMap
-  // .put('duan', [1, 2, 3])
-  // .put('zhao', [4, 5, 6])
-  // .put('yang', 222)
   .put('duan', [1, 2, 3])
   .put('zhao', 222)
   .put('duan', 'new duan')
@@ -364,6 +386,8 @@ detachHashMap
   .put('duan', { age: 20 })
   .put('zhao', { skill: 'programmer' })
 
+// console.log(detachHashMap.get('zhao'));
+console.log(detachHashMap.delete('zhao'));
 console.log(detachHashMap.get('zhao'));
 
 

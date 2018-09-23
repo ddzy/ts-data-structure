@@ -200,7 +200,7 @@ var DetachHashMap = /** @class */ (function () {
         });
         var keyPosition = this.loseloseHashCode(key);
         var doublyLinkedList = new DoublyLinkedList({});
-        // 如果为空
+        // 空链表
         if (this.isKeyEmpty(key)) {
             Reflect.set(this.table, keyPosition, doublyLinkedList);
         }
@@ -231,17 +231,31 @@ var DetachHashMap = /** @class */ (function () {
         }
         return null;
     };
+    DetachHashMap.prototype.delete = function (key) {
+        var keyPosition = this.loseloseHashCode(key);
+        // 非空
+        if (!this.isKeyEmpty(key)) {
+            var keyLinkList = Reflect.get(this.table, keyPosition);
+            var currentNode = keyLinkList.getHead();
+            while (currentNode) {
+                if (currentNode.element.key === key) {
+                    // keyLinkList.remove(currentNode.element);
+                }
+                currentNode = currentNode.next;
+            }
+        }
+        return this;
+    };
     return DetachHashMap;
 }());
 var detachHashMap = new DetachHashMap();
 detachHashMap
-    // .put('duan', [1, 2, 3])
-    // .put('zhao', [4, 5, 6])
-    // .put('yang', 222)
     .put('duan', [1, 2, 3])
     .put('zhao', 222)
     .put('duan', 'new duan')
     .put('duan', 'second duan')
     .put('duan', { age: 20 })
     .put('zhao', { skill: 'programmer' });
+// console.log(detachHashMap.get('zhao'));
+console.log(detachHashMap.delete('zhao'));
 console.log(detachHashMap.get('zhao'));
