@@ -168,14 +168,25 @@ var DetachHashMap = /** @class */ (function () {
     function DetachHashMap(_props) {
         if (_props === void 0) { _props = {}; }
         this.table = [];
-        this.loseloseHashCode = function (key) {
-            var result = 0;
-            for (var i = 0, item = void 0; item = key[i++];) {
-                result += key.charCodeAt(i - 1);
-            }
-            return result;
-        };
     }
+    /**
+     * 获取字符串ASCLL码的总和
+     * @param key 键
+     */
+    DetachHashMap.prototype.loseloseHashCode = function (key) {
+        var result = 0;
+        for (var i = 0, item = void 0; item = key[i++];) {
+            result += key.charCodeAt(i - 1);
+        }
+        return result;
+    };
+    /**
+     * @param key 查找的键
+     * 散列表是否存在键
+     */
+    DetachHashMap.prototype.isKeyEmpty = function (key) {
+        return Reflect.get(this.table, key) === '';
+    };
     /**
      * 添加新数据
      * @param key 键
@@ -186,10 +197,19 @@ var DetachHashMap = /** @class */ (function () {
             key: key,
             value: value,
         });
+        var keyPosition = this.loseloseHashCode(key);
         var doublyLinkedList = new DoublyLinkedList({});
-        var currentNode = doublyLinkedList.getHead();
-        if () {
+        // 如果为空
+        if (this.isKeyEmpty(key)) {
+            Reflect.set(this.table, keyPosition, doublyLinkedList);
         }
+        doublyLinkedList.append(formatedDetachHashMap);
+        return this;
     };
     return DetachHashMap;
 }());
+var detachHashMap = new DetachHashMap();
+detachHashMap
+    .put('duan', [1, 2, 3])
+    .put('zhao', [4, 5, 6])
+    .put('yang', 222);

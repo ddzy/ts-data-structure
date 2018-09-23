@@ -522,8 +522,6 @@ class DoublyLinkedList {
 }
 
 
-
-
 /**
  * 实例三: 循环链表
  */

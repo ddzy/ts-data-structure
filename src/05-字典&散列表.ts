@@ -248,9 +248,13 @@ class DetachHashMap {
     _props: IDetachHashMapProps = {},
   ) {}
 
-  private loseloseHashCode = (
+  /**
+   * 获取字符串ASCLL码的总和
+   * @param key 键
+   */
+  private loseloseHashCode (
     key: string,
-  ): number => {
+  ): number {
     let result: number = 0;
 
     for(let i = 0, item; item = key[i++];) {
@@ -258,6 +262,17 @@ class DetachHashMap {
     }
 
     return result;
+  }
+
+
+  /**
+   * @param key 查找的键
+   * 散列表是否存在键
+   */
+  public isKeyEmpty(
+    key: string,
+  ): boolean {
+    return Reflect.get(this.table, key) === '';
   }
 
   /**
@@ -268,18 +283,36 @@ class DetachHashMap {
   public put(
     key: string,
     value: any,
-  ) {
+  ): DetachHashMap {
     const formatedDetachHashMap: FormatDetachHashMap = new FormatDetachHashMap({
       key,
       value,
     });
+    const keyPosition: number = this.loseloseHashCode(key);
     const doublyLinkedList: DoublyLinkedList = new DoublyLinkedList({});
-    const currentNode: any = doublyLinkedList.getHead();
 
-    if() {
-
+    // 如果为空
+    if(this.isKeyEmpty(key)) {
+      Reflect.set(
+        this.table,
+        keyPosition,
+        doublyLinkedList,
+      );
     }
+    doublyLinkedList.append(formatedDetachHashMap);
+
+    return this;
   }
 }
+
+
+const detachHashMap: DetachHashMap = new DetachHashMap();
+
+detachHashMap
+  .put('duan', [1, 2, 3])
+  .put('zhao', [4, 5, 6])
+  .put('yang', 222)
+
+  
 
 
