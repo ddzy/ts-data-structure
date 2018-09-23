@@ -118,8 +118,8 @@ var HashMap = /** @class */ (function () {
      * @returns this
      */
     HashMap.prototype.put = function (key, value) {
-        // const keyPosition: number = this.loseloseHashCode(key);
-        // Reflect.set(this.table, keyPosition, value);
+        var keyPosition = this.loseloseHashCode(key);
+        Reflect.set(this.table, keyPosition, value);
         return this;
     };
     /**
@@ -139,7 +139,19 @@ var HashMap = /** @class */ (function () {
     HashMap.prototype.get = function (key) {
         return key;
     };
+    /**
+     * 打印散列表数据
+     * @returns Array<any>
+     */
+    HashMap.prototype.print = function () {
+        return this.table;
+    };
     return HashMap;
 }());
 var hashmap = new HashMap({});
-hashmap.put('duanzhaoyang', [1, 2, 3]);
+hashmap
+    .put('duan', [1, 2, 3])
+    .put('zhao', 'zhaozhao')
+    .put('yang', 888)
+    .put('yang', 999);
+console.log(hashmap.print());

@@ -165,9 +165,9 @@ class HashMap {
     key: string,
     value: any,
   ): HashMap {
-    // const keyPosition: number = this.loseloseHashCode(key);
+    const keyPosition: number = this.loseloseHashCode(key);
 
-    // Reflect.set(this.table, keyPosition, value);
+    Reflect.set(this.table, keyPosition, value);
 
     return this;
   }
@@ -198,9 +198,25 @@ class HashMap {
     return key;
   }
 
+
+  /**
+   * 打印散列表数据
+   * @returns Array<any>
+   */
+  public print(): any[] {
+    return this.table;
+  }
+
 }
 
 
 const hashmap = new HashMap({});
-hashmap.put('duanzhaoyang', [1, 2, 3]);
+hashmap
+  .put('duan', [1, 2, 3])
+  .put('zhao', 'zhaozhao')
+  .put('yang', 888)
+  .put('yang', 999);
+
+console.log(hashmap.print());
+
 
