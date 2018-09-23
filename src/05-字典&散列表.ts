@@ -181,8 +181,9 @@ class HashMap {
   public delete(
     key: string,
   ): boolean {
-    console.log(key);
-    return false;
+    const keyPosition: number = this.loseloseHashCode(key);
+
+    return Reflect.set(this.table, keyPosition, '');
   }
 
 
@@ -215,7 +216,8 @@ hashmap
   .put('duan', [1, 2, 3])
   .put('zhao', 'zhaozhao')
   .put('yang', 888)
-  .put('yang', 999);
+  .put('yang', 999)
+  .delete('yang');
 
 console.log(hashmap.print());
 

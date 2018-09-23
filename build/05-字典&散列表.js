@@ -128,8 +128,8 @@ var HashMap = /** @class */ (function () {
      * @returns Boolean
      */
     HashMap.prototype.delete = function (key) {
-        console.log(key);
-        return false;
+        var keyPosition = this.loseloseHashCode(key);
+        return Reflect.set(this.table, keyPosition, '');
     };
     /**
      * 获取散列表特定项
@@ -153,5 +153,6 @@ hashmap
     .put('duan', [1, 2, 3])
     .put('zhao', 'zhaozhao')
     .put('yang', 888)
-    .put('yang', 999);
+    .put('yang', 999)
+    .delete('yang');
 console.log(hashmap.print());
