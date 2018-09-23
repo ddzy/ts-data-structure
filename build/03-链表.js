@@ -242,9 +242,9 @@ var DoublyLinkedList = /** @class */ (function () {
             var currentNode = _this.head;
             var currentIndex = 0;
             while (currentIndex++ < len) {
-                // if (currentNode.element === point) {
-                //   return currentIndex - 1;
-                // }
+                if (currentNode.element === point) {
+                    return currentIndex - 1;
+                }
                 currentNode = currentNode.next;
             }
             return -1;
@@ -416,9 +416,3 @@ var DoublyLinkedList = /** @class */ (function () {
     }
     return DoublyLinkedList;
 }());
-var double = new DoublyLinkedList();
-double.append('duan').append('zhao');
-// console.log(double.print());
-// double.removeAt(double.where('duan'));
-double.remove('duan');
-console.log(double.print());

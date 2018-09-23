@@ -318,9 +318,10 @@ class DoublyLinkedList {
     let currentIndex: number = 0;
 
     while (currentIndex++ < len) {
-      // if (currentNode.element === point) {
-      //   return currentIndex - 1;
-      // }
+      if (currentNode.element === point) {
+        return currentIndex - 1;
+      }
+
       currentNode = currentNode.next;
     }
 
@@ -526,17 +527,4 @@ class DoublyLinkedList {
     return this;
   }
 }
-
-
-
-const double = new DoublyLinkedList();
-
-double.append('duan').append('zhao')
-
-// console.log(double.print());
-
-// double.removeAt(double.where('duan'));
-double.remove('duan');
-
-console.log(double.print()) 
 

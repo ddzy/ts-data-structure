@@ -364,7 +364,8 @@ class DetachHashMap {
 
       while(currentNode) {
         if(currentNode.element.key === key) {
-          // keyLinkList.remove(currentNode.element);
+          keyLinkList
+            .removeAt(keyLinkList.where(currentNode.element));
         }
 
         currentNode = currentNode.next;
@@ -389,6 +390,10 @@ detachHashMap
 // console.log(detachHashMap.get('zhao'));
 console.log(detachHashMap.delete('zhao'));
 console.log(detachHashMap.get('zhao'));
+
+
+// detachHashMap.delete('duan');
+console.log(detachHashMap.get('duan'));
 
 
 
