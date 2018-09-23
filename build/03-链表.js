@@ -184,6 +184,12 @@ var DoublyLinkedList = /** @class */ (function () {
         this.head = null;
         this.tail = null;
         /**
+         * 头指针
+         */
+        this.getHead = function () {
+            return _this.head;
+        };
+        /**
          * 链表大小
          * @returns number
          */

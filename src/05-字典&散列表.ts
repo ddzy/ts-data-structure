@@ -188,8 +188,8 @@ class HashMap {
 
 
   /**
-   * 获取散列表特定项
    * @param key 键
+   * 获取散列表特定项
    * @returns 键值
    */
   public get(
@@ -212,15 +212,74 @@ class HashMap {
 }
 
 
-const hashmap = new HashMap({});
-hashmap
-  .put('duan', [1, 2, 3])
-  .put('zhao', 'zhaozhao')
-  .put('yang', 888)
-  .put('yang', 999)
-  .delete('yang');
+/ -------------------------------------------------- /
+/**
+ * 分离链接: 解决散列表键名冲突
+ */
+interface IDetachHashMapProps {};
+interface IFormatDetachHashMapProps {
+  readonly key: string,
+  readonly value: any,
+};
 
-console.log(hashmap.print());
-console.log(hashmap.get('duan'));
+class FormatDetachHashMap {
+  
+  public readonly key: string = ''
+  
+  public readonly value: any = ''
+
+  public constructor(
+    _props: IFormatDetachHashMapProps,
+  ) {
+    this.key = _props.key;
+    this.value = _props.value;
+  }
+
+  public format(): string {
+    return `[${this.key} - ${this.value}]`;
+  }
+}
+
+class DetachHashMap {
+
+  private readonly table: any[] = []
+
+  public constructor(
+    _props: IDetachHashMapProps = {},
+  ) {}
+
+  private loseloseHashCode = (
+    key: string,
+  ): number => {
+    let result: number = 0;
+
+    for(let i = 0, item; item = key[i++];) {
+      result += key.charCodeAt(i - 1);
+    }
+
+    return result;
+  }
+
+  /**
+   * 添加新数据
+   * @param key 键
+   * @param value 键值
+   */
+  public put(
+    key: string,
+    value: any,
+  ) {
+    const formatedDetachHashMap: FormatDetachHashMap = new FormatDetachHashMap({
+      key,
+      value,
+    });
+    const doublyLinkedList: DoublyLinkedList = new DoublyLinkedList({});
+    const currentNode: any = doublyLinkedList.getHead();
+
+    if() {
+
+    }
+  }
+}
 
 

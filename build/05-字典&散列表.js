@@ -132,8 +132,8 @@ var HashMap = /** @class */ (function () {
         return Reflect.set(this.table, keyPosition, '');
     };
     /**
-     * 获取散列表特定项
      * @param key 键
+     * 获取散列表特定项
      * @returns 键值
      */
     HashMap.prototype.get = function (key) {
@@ -149,12 +149,47 @@ var HashMap = /** @class */ (function () {
     };
     return HashMap;
 }());
-var hashmap = new HashMap({});
-hashmap
-    .put('duan', [1, 2, 3])
-    .put('zhao', 'zhaozhao')
-    .put('yang', 888)
-    .put('yang', 999)
-    .delete('yang');
-console.log(hashmap.print());
-console.log(hashmap.get('duan'));
+/ -------------------------------------------------- /;
+;
+;
+var FormatDetachHashMap = /** @class */ (function () {
+    function FormatDetachHashMap(_props) {
+        this.key = '';
+        this.value = '';
+        this.key = _props.key;
+        this.value = _props.value;
+    }
+    FormatDetachHashMap.prototype.format = function () {
+        return "[" + this.key + " - " + this.value + "]";
+    };
+    return FormatDetachHashMap;
+}());
+var DetachHashMap = /** @class */ (function () {
+    function DetachHashMap(_props) {
+        if (_props === void 0) { _props = {}; }
+        this.table = [];
+        this.loseloseHashCode = function (key) {
+            var result = 0;
+            for (var i = 0, item = void 0; item = key[i++];) {
+                result += key.charCodeAt(i - 1);
+            }
+            return result;
+        };
+    }
+    /**
+     * 添加新数据
+     * @param key 键
+     * @param value 键值
+     */
+    DetachHashMap.prototype.put = function (key, value) {
+        var formatedDetachHashMap = new FormatDetachHashMap({
+            key: key,
+            value: value,
+        });
+        var doublyLinkedList = new DoublyLinkedList({});
+        var currentNode = doublyLinkedList.getHead();
+        if () {
+        }
+    };
+    return DetachHashMap;
+}());

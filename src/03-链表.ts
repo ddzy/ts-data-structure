@@ -241,6 +241,15 @@ class DoublyLinkedList {
     _props: IDoublyLinkedListProps = {},
   ) { }
 
+  
+  /**
+   * 头指针
+   */
+  public getHead = (): any => {
+    return this.head;
+  }
+
+
   /**
    * 链表大小
    * @returns number 
