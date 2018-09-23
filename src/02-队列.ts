@@ -15,7 +15,7 @@ class Sequence {
 
   protected items: any[] = []
 
-  public constructor(data: ISequenceProps = {}) {
+  public constructor(_data: ISequenceProps = {}) {
     
   }
 

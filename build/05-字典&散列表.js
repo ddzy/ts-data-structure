@@ -6,6 +6,7 @@
  * 别名: 映射
  * 实例: ES6的 Map
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 var Map = /** @class */ (function () {
     function Map(_props) {
         if (_props === void 0) { _props = {}; }
@@ -85,9 +86,54 @@ var Map = /** @class */ (function () {
             }
             return result;
         };
+        /**
+         * 打印字典
+         */
+        this.print = function () {
+            return _this.items;
+        };
     }
     return Map;
 }());
-var mapOne = new Map({});
-mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.values());
+var HashMap = /** @class */ (function () {
+    function HashMap(_props) {
+        if (_props === void 0) { _props = {}; }
+        this.table = [];
+    }
+    /**
+     * 散列表添加新项
+     * @param key 键
+     * @param value 键值
+     * @returns this
+     */
+    HashMap.prototype.put = function (key, value) {
+        console.log(key, value);
+        return this;
+    };
+    /**
+     * 获取键的ASCLL码的总和
+     * @param key 键
+     * @returns Number
+     */
+    HashMap.prototype.loseloseHashCode = function (key) {
+        return -1;
+    };
+    /**
+     * 删除某项
+     * @param key 键
+     * @returns Boolean
+     */
+    HashMap.prototype.delete = function (key) {
+        console.log(key);
+        return false;
+    };
+    /**
+     * 获取散列表特定项
+     * @param key 键
+     * @returns 键值
+     */
+    HashMap.prototype.get = function (key) {
+        return key;
+    };
+    return HashMap;
+}());

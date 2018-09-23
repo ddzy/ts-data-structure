@@ -20,8 +20,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 ;
 var Sequence = /** @class */ (function () {
-    function Sequence(data) {
-        if (data === void 0) { data = {}; }
+    function Sequence(_data) {
+        if (_data === void 0) { _data = {}; }
         var _this = this;
         this.items = [];
         /**

@@ -111,10 +111,85 @@ class Map {
 
     return result;
   }
+
+  /**
+   * 打印字典
+   */
+  public print = () => {
+    return this.items;
+  }
 }
 
 
-const mapOne = new Map({});
 
-mapOne.set('duan', [1, 2]).set('zhao', [3, 4, 5]);
-console.log(mapOne.values());
+/**
+ * 散列表
+ * 别名: HashMap, 字典的散列表实现方式
+ * 作用: 快速检索, 给定一个键值, 返回值在表中的地址
+ * 方法: 将每个键值中的每个字母的ASCLL值相加
+ */
+export interface IHashMapProps {}
+
+class HashMap {
+
+  private readonly table: any[] = []
+
+  public constructor(_props: IHashMapProps = {}) {}
+
+
+  /**
+   * 散列表添加新项
+   * @param key 键
+   * @param value 键值
+   * @returns this
+   */
+  public put(
+    key: string,
+    value: any,
+  ): HashMap {
+    console.log(key, value);
+
+    return this;
+  }
+
+
+  /**
+   * 获取键的ASCLL码的总和
+   * @param key 键
+   * @returns Number 
+   */
+  private loseloseHashCode(
+    key: string,
+  ): number {
+
+    return -1;
+  }
+
+
+  /**
+   * 删除某项
+   * @param key 键
+   * @returns Boolean
+   */
+  public delete(
+    key: string,
+  ): boolean {
+    console.log(key);
+    return false;
+  }
+
+
+  /**
+   * 获取散列表特定项
+   * @param key 键
+   * @returns 键值
+   */
+  public get(
+    key: string,
+  ): any {
+
+    return key;
+  }
+
+}
+
