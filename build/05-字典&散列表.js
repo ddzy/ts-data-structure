@@ -249,16 +249,3 @@ var DetachHashMap = /** @class */ (function () {
     };
     return DetachHashMap;
 }());
-var detachHashMap = new DetachHashMap();
-detachHashMap
-    .put('duan', [1, 2, 3])
-    .put('zhao', 222)
-    .put('duan', 'new duan')
-    .put('duan', 'second duan')
-    .put('duan', { age: 20 })
-    .put('zhao', { skill: 'programmer' });
-// console.log(detachHashMap.get('zhao'));
-console.log(detachHashMap.delete('zhao'));
-console.log(detachHashMap.get('zhao'));
-// detachHashMap.delete('duan');
-console.log(detachHashMap.get('duan'));
