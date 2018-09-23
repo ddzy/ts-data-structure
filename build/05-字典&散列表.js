@@ -215,19 +215,19 @@ var DetachHashMap = /** @class */ (function () {
      */
     DetachHashMap.prototype.get = function (key) {
         var keyPosition = this.loseloseHashCode(key);
+        var result = [];
         // 键值不为空
         if (!this.isKeyEmpty(key)) {
             var currentNode = Reflect
                 .get(this.table, keyPosition)
                 .getHead();
-            console.log(this.table);
-            console.log(Reflect.get(this.table, keyPosition));
-            while (currentNode.next) {
+            while (currentNode) {
                 if (currentNode.element.key === key) {
-                    return currentNode.element.value;
+                    result.push(currentNode.element);
                 }
                 currentNode = currentNode.next;
             }
+            return result;
         }
         return null;
     };
@@ -240,7 +240,8 @@ detachHashMap
     // .put('yang', 222)
     .put('duan', [1, 2, 3])
     .put('zhao', 222)
-    .put('duan', 'new duan');
-// console.log(detachHashMap.get('duan'));
-// console.log(detachHashMap.get('zhao'));
-detachHashMap.get('zhao');
+    .put('duan', 'new duan')
+    .put('duan', 'second duan')
+    .put('duan', { age: 20 })
+    .put('zhao', { skill: 'programmer' });
+console.log(detachHashMap.get('zhao'));

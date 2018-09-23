@@ -325,6 +325,7 @@ class DetachHashMap {
     key: string,
   ): any {
     const keyPosition: number = this.loseloseHashCode(key);
+    const result: any[] = [];
 
     // 键值不为空
     if(!this.isKeyEmpty(key)) {
@@ -335,17 +336,14 @@ class DetachHashMap {
         )
         .getHead();
 
-      console.log(this.table);
-      
-      console.log(Reflect.get(this.table, keyPosition));
-
-      while (currentNode.next) {
+      while (currentNode) {
         if(currentNode.element.key === key) {
-          return currentNode.element.value;
+          result.push(currentNode.element);
         }
-
         currentNode = currentNode.next;
       }
+
+      return result;
     }
 
     return null;
@@ -362,11 +360,11 @@ detachHashMap
   .put('duan', [1, 2, 3])
   .put('zhao', 222)
   .put('duan', 'new duan')
+  .put('duan', 'second duan')
+  .put('duan', { age: 20 })
+  .put('zhao', { skill: 'programmer' })
 
-
-// console.log(detachHashMap.get('duan'));
-// console.log(detachHashMap.get('zhao'));
-detachHashMap.get('zhao');
+console.log(detachHashMap.get('zhao'));
 
 
 
