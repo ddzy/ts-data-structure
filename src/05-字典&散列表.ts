@@ -195,8 +195,9 @@ class HashMap {
   public get(
     key: string,
   ): any {
+    const keyPosition: number = this.loseloseHashCode(key);
 
-    return key;
+    return Reflect.get(this.table, keyPosition);
   }
 
 
@@ -220,5 +221,6 @@ hashmap
   .delete('yang');
 
 console.log(hashmap.print());
+console.log(hashmap.get('duan'));
 
 

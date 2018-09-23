@@ -137,7 +137,8 @@ var HashMap = /** @class */ (function () {
      * @returns 键值
      */
     HashMap.prototype.get = function (key) {
-        return key;
+        var keyPosition = this.loseloseHashCode(key);
+        return Reflect.get(this.table, keyPosition);
     };
     /**
      * 打印散列表数据
@@ -156,3 +157,4 @@ hashmap
     .put('yang', 999)
     .delete('yang');
 console.log(hashmap.print());
+console.log(hashmap.get('duan'));
