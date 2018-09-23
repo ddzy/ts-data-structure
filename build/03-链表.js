@@ -413,6 +413,17 @@ var DoublyLinkedList = /** @class */ (function () {
     }
     return DoublyLinkedList;
 }());
+// const double = new DoublyLinkedList();
+// double
+//   .append({
+//     key: 'name',
+//     value: 'duan',
+//   })
+//   .append({
+//     key: 'age',
+//     value: 20,
+//   })
+// console.log(double.getHead());
 /**
  * 实例三: 循环链表
  */

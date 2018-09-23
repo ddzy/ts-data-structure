@@ -212,7 +212,16 @@ class HashMap {
 }
 
 
-/ -------------------------------------------------- /
+
+
+/ -------------------------------------------------- ---------------------------------------------------- /
+
+
+
+
+
+
+
 /**
  * 分离链接: 解决散列表键名冲突
  */
@@ -272,7 +281,9 @@ class DetachHashMap {
   public isKeyEmpty(
     key: string,
   ): boolean {
-    return Reflect.get(this.table, key) === '';
+    const keyPosition: number = this.loseloseHashCode(key);
+
+    return Reflect.get(this.table, keyPosition) === undefined
   }
 
   /**
@@ -299,9 +310,45 @@ class DetachHashMap {
         doublyLinkedList,
       );
     }
-    doublyLinkedList.append(formatedDetachHashMap);
+    Reflect
+      .get(this.table, keyPosition)
+      .append(formatedDetachHashMap);
 
     return this;
+  }
+
+  /**
+   * 获取散列表的键值
+   * @param key 查找的键
+   */
+  public get(
+    key: string,
+  ): any {
+    const keyPosition: number = this.loseloseHashCode(key);
+
+    // 键值不为空
+    if(!this.isKeyEmpty(key)) {
+      let currentNode: DoublyPoint = Reflect
+        .get(
+          this.table,
+          keyPosition
+        )
+        .getHead();
+
+      console.log(this.table);
+      
+      console.log(Reflect.get(this.table, keyPosition));
+
+      while (currentNode.next) {
+        if(currentNode.element.key === key) {
+          return currentNode.element.value;
+        }
+
+        currentNode = currentNode.next;
+      }
+    }
+
+    return null;
   }
 }
 
@@ -309,10 +356,18 @@ class DetachHashMap {
 const detachHashMap: DetachHashMap = new DetachHashMap();
 
 detachHashMap
+  // .put('duan', [1, 2, 3])
+  // .put('zhao', [4, 5, 6])
+  // .put('yang', 222)
   .put('duan', [1, 2, 3])
-  .put('zhao', [4, 5, 6])
-  .put('yang', 222)
+  .put('zhao', 222)
+  .put('duan', 'new duan')
 
-  
+
+// console.log(detachHashMap.get('duan'));
+// console.log(detachHashMap.get('zhao'));
+detachHashMap.get('zhao');
+
+
 
 

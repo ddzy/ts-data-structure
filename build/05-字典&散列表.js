@@ -149,7 +149,7 @@ var HashMap = /** @class */ (function () {
     };
     return HashMap;
 }());
-/ -------------------------------------------------- /;
+/ -------------------------------------------------- ---------------------------------------------------- /;
 ;
 ;
 var FormatDetachHashMap = /** @class */ (function () {
@@ -185,7 +185,8 @@ var DetachHashMap = /** @class */ (function () {
      * 散列表是否存在键
      */
     DetachHashMap.prototype.isKeyEmpty = function (key) {
-        return Reflect.get(this.table, key) === '';
+        var keyPosition = this.loseloseHashCode(key);
+        return Reflect.get(this.table, keyPosition) === undefined;
     };
     /**
      * 添加新数据
@@ -203,13 +204,43 @@ var DetachHashMap = /** @class */ (function () {
         if (this.isKeyEmpty(key)) {
             Reflect.set(this.table, keyPosition, doublyLinkedList);
         }
-        doublyLinkedList.append(formatedDetachHashMap);
+        Reflect
+            .get(this.table, keyPosition)
+            .append(formatedDetachHashMap);
         return this;
+    };
+    /**
+     * 获取散列表的键值
+     * @param key 查找的键
+     */
+    DetachHashMap.prototype.get = function (key) {
+        var keyPosition = this.loseloseHashCode(key);
+        // 键值不为空
+        if (!this.isKeyEmpty(key)) {
+            var currentNode = Reflect
+                .get(this.table, keyPosition)
+                .getHead();
+            console.log(this.table);
+            console.log(Reflect.get(this.table, keyPosition));
+            while (currentNode.next) {
+                if (currentNode.element.key === key) {
+                    return currentNode.element.value;
+                }
+                currentNode = currentNode.next;
+            }
+        }
+        return null;
     };
     return DetachHashMap;
 }());
 var detachHashMap = new DetachHashMap();
 detachHashMap
+    // .put('duan', [1, 2, 3])
+    // .put('zhao', [4, 5, 6])
+    // .put('yang', 222)
     .put('duan', [1, 2, 3])
-    .put('zhao', [4, 5, 6])
-    .put('yang', 222);
+    .put('zhao', 222)
+    .put('duan', 'new duan');
+// console.log(detachHashMap.get('duan'));
+// console.log(detachHashMap.get('zhao'));
+detachHashMap.get('zhao');
