@@ -10,12 +10,12 @@
 /**
  * Map 实现
  */
-interface IMapProps {}
+interface IMapProps { }
 
 class Map {
   private items: object = {}
 
-  public constructor(_props: IMapProps = {}) {}
+  public constructor(_props: IMapProps = {}) { }
 
   /**
    * 对应的key的键是否存在
@@ -128,13 +128,31 @@ class Map {
  * 作用: 快速检索, 给定一个键值, 返回值在表中的地址
  * 方法: 将每个键值中的每个字母的ASCLL值相加
  */
-export interface IHashMapProps {}
+interface IHashMapProps { }
 
 class HashMap {
 
   private readonly table: any[] = []
 
-  public constructor(_props: IHashMapProps = {}) {}
+  public constructor(_props: IHashMapProps = {}) { }
+
+
+  /**
+ * 获取键的ASCLL码的总和
+ * @param key 键
+ * @returns Number 
+ */
+  private loseloseHashCode(
+    key: string,
+  ): number {
+    let sum: number = 0;
+
+    for(let i = 0, item; item = key[i++];) {
+      sum += key.charCodeAt(i - 1);
+    }
+
+    return sum % 38;
+  }
 
 
   /**
@@ -147,22 +165,11 @@ class HashMap {
     key: string,
     value: any,
   ): HashMap {
-    console.log(key, value);
+    // const keyPosition: number = this.loseloseHashCode(key);
+
+    // Reflect.set(this.table, keyPosition, value);
 
     return this;
-  }
-
-
-  /**
-   * 获取键的ASCLL码的总和
-   * @param key 键
-   * @returns Number 
-   */
-  private loseloseHashCode(
-    key: string,
-  ): number {
-
-    return -1;
   }
 
 
@@ -192,4 +199,8 @@ class HashMap {
   }
 
 }
+
+
+const hashmap = new HashMap({});
+hashmap.put('duanzhaoyang', [1, 2, 3]);
 

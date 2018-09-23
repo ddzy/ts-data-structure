@@ -6,7 +6,6 @@
  * 别名: 映射
  * 实例: ES6的 Map
  */
-Object.defineProperty(exports, "__esModule", { value: true });
 var Map = /** @class */ (function () {
     function Map(_props) {
         if (_props === void 0) { _props = {}; }
@@ -101,22 +100,27 @@ var HashMap = /** @class */ (function () {
         this.table = [];
     }
     /**
+   * 获取键的ASCLL码的总和
+   * @param key 键
+   * @returns Number
+   */
+    HashMap.prototype.loseloseHashCode = function (key) {
+        var sum = 0;
+        for (var i = 0, item = void 0; item = key[i++];) {
+            sum += key.charCodeAt(i - 1);
+        }
+        return sum % 38;
+    };
+    /**
      * 散列表添加新项
      * @param key 键
      * @param value 键值
      * @returns this
      */
     HashMap.prototype.put = function (key, value) {
-        console.log(key, value);
+        // const keyPosition: number = this.loseloseHashCode(key);
+        // Reflect.set(this.table, keyPosition, value);
         return this;
-    };
-    /**
-     * 获取键的ASCLL码的总和
-     * @param key 键
-     * @returns Number
-     */
-    HashMap.prototype.loseloseHashCode = function (key) {
-        return -1;
     };
     /**
      * 删除某项
@@ -137,3 +141,5 @@ var HashMap = /** @class */ (function () {
     };
     return HashMap;
 }());
+var hashmap = new HashMap({});
+hashmap.put('duanzhaoyang', [1, 2, 3]);
