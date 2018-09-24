@@ -501,6 +501,21 @@ class LinearHashMap {
   public delete(
     key: string,
   ): boolean {
+    let keyPosition: number = this.loseLoseHashCode(key);
+
+    if(!this.isKeyExist(keyPosition)) {
+      while(
+        this.isKeyExist(++keyPosition)
+      ) {
+        keyPosition ++;
+      }
+
+      return Reflect.set(
+        this.table,
+        keyPosition,
+        undefined,
+      );
+    }
 
     return false;
   }
@@ -520,6 +535,9 @@ linearHashMap
   .set('yang', 'yanggegeaaa')
   .set('duan', [4, 5, 6])
   .set('zhao', 333)
+
+console.log(linearHashMap.delete('duan'))
+console.log(linearHashMap.getTable());
 
 
 

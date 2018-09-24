@@ -321,6 +321,13 @@ var LinearHashMap = /** @class */ (function () {
      * @param key 删除的键
      */
     LinearHashMap.prototype.delete = function (key) {
+        var keyPosition = this.loseLoseHashCode(key);
+        if (!this.isKeyExist(keyPosition)) {
+            while (this.isKeyExist(++keyPosition)) {
+                keyPosition++;
+            }
+            return Reflect.set(this.table, keyPosition, undefined);
+        }
         return false;
     };
     LinearHashMap.prototype.getTable = function () {
@@ -335,3 +342,5 @@ linearHashMap
     .set('yang', 'yanggegeaaa')
     .set('duan', [4, 5, 6])
     .set('zhao', 333);
+console.log(linearHashMap.delete('duan'));
+console.log(linearHashMap.getTable());
