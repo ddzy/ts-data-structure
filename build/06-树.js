@@ -7,7 +7,10 @@
  *
  * 键: 树中对节点的称呼
  *
- *
+ * 中序遍历{
+ *    规则: 从最小到最大的顺序访问所有节点
+ *    应用: 树的排序
+ * }
  */
 ;
 ;
@@ -47,6 +50,18 @@ var BinarySearchTree = /** @class */ (function () {
             else {
                 this._insertNode(currentNode.right, newNode);
             }
+        }
+    };
+    /**
+     * 中序遍历辅助函数
+     * @param currentNode 当前节点
+     * @param callback 处理函数
+     */
+    BinarySearchTree._inOrderTraverseNode = function (currentNode, callback) {
+        if (currentNode !== null) {
+            this._inOrderTraverseNode(currentNode.left, callback);
+            callback && callback(currentNode.key);
+            this._inOrderTraverseNode(currentNode.right, callback);
         }
     };
     /**
@@ -93,7 +108,8 @@ var BinarySearchTree = /** @class */ (function () {
     /**
      * 中序遍历
      */
-    BinarySearchTree.prototype.inOrderTraverse = function () {
+    BinarySearchTree.prototype.inOrderTraverse = function (callback) {
+        BinarySearchTree._inOrderTraverseNode(this.root, callback);
     };
     /**
      * 先序遍历
@@ -110,4 +126,10 @@ var BinarySearchTree = /** @class */ (function () {
 var binarySearchTree = new BinarySearchTree({});
 binarySearchTree
     .insert(2)
-    .insert(3);
+    .insert(3)
+    .insert(1)
+    .insert(8)
+    .insert(2)
+    .inOrderTraverse(function (key) {
+    console.log(key);
+});
