@@ -336,11 +336,3 @@ var LinearHashMap = /** @class */ (function () {
     return LinearHashMap;
 }());
 var linearHashMap = new LinearHashMap({});
-linearHashMap
-    .set('duan', [1, 2, 3])
-    .set('zhao', 222)
-    .set('yang', 'yanggegeaaa')
-    .set('duan', [4, 5, 6])
-    .set('zhao', 333);
-console.log(linearHashMap.delete('duan'));
-console.log(linearHashMap.getTable());
