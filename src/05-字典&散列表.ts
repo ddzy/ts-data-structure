@@ -527,9 +527,6 @@ class LinearHashMap {
 }
 
 
-const linearHashMap = new LinearHashMap({});
-
-
 
 
 

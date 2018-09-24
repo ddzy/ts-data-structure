@@ -335,4 +335,3 @@ var LinearHashMap = /** @class */ (function () {
     };
     return LinearHashMap;
 }());
-var linearHashMap = new LinearHashMap({});
