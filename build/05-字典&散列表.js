@@ -249,3 +249,31 @@ var DetachHashMap = /** @class */ (function () {
     };
     return DetachHashMap;
 }());
+var LinearHashMap = /** @class */ (function () {
+    function LinearHashMap(_props) {
+        if (_props === void 0) { _props = {}; }
+        this.table = [];
+    }
+    /**
+     * 新增散列表数据
+     * @param key 新增的键
+     * @param value 键值
+     */
+    LinearHashMap.prototype.set = function (key, value) {
+        return this;
+    };
+    /**
+     * 获取散列表数据
+     * @param key 获取的键
+     */
+    LinearHashMap.prototype.get = function (key) {
+    };
+    /**
+     * 删除散列表数据
+     * @param key 删除的键
+     */
+    LinearHashMap.prototype.delete = function (key) {
+        return false;
+    };
+    return LinearHashMap;
+}());

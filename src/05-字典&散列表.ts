@@ -378,6 +378,62 @@ class DetachHashMap {
 
 
 
+/*-------------------------------------------------/
+/--------------------------------------------------*/
+
+
+
+/**
+ * 线性探查: 解决散列表键名冲突
+ */
+interface ILinearHashMapProps {}
+
+class LinearHashMap {
+
+  private table: any[] = []
+
+  public constructor(
+    _props: ILinearHashMapProps = {},
+  ) {}
+
+  
+  /**
+   * 新增散列表数据
+   * @param key 新增的键
+   * @param value 键值
+   */
+  public set(
+    key: string,
+    value: IFormatDetachHashMapProps,
+  ): LinearHashMap {
+
+    return this;
+  }
+
+
+  /**
+   * 获取散列表数据
+   * @param key 获取的键
+   */
+  public get(
+    key: string,
+  ): any {
+
+  }
+  
+
+  /**
+   * 删除散列表数据
+   * @param key 删除的键
+   */
+  public delete(
+    key: string,
+  ): boolean {
+
+    return false;
+  }
+}
+
 
 
 
