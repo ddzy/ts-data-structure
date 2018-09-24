@@ -11,6 +11,11 @@
  *    规则: 从最小到最大的顺序访问所有节点
  *    应用: 树的排序
  * }
+ *
+ * 先序遍历{
+ *    规则: 先访问节点本身, 然后在访问左侧节点, 最后访问右侧节点
+ *    应用: 打印结构化的文档
+ * }
  */
 ;
 ;
@@ -60,8 +65,32 @@ var BinarySearchTree = /** @class */ (function () {
     BinarySearchTree._inOrderTraverseNode = function (currentNode, callback) {
         if (currentNode !== null) {
             this._inOrderTraverseNode(currentNode.left, callback);
-            callback && callback(currentNode.key);
+            callback(currentNode.key);
             this._inOrderTraverseNode(currentNode.right, callback);
+        }
+    };
+    /**
+     * 先序遍历辅助函数
+     * @param currentNode 当前节点
+     * @param callback 处理函数
+     */
+    BinarySearchTree._preOrderTraverseNode = function (currentNode, callback) {
+        if (currentNode) {
+            callback(currentNode.key);
+            this._preOrderTraverseNode(currentNode.left, callback);
+            this._preOrderTraverseNode(currentNode.right, callback);
+        }
+    };
+    /**
+     * 后序遍历辅助函数
+     * @param currentNode 当前节点
+     * @param callback 处理
+     */
+    BinarySearchTree._postOrderTraverseNode = function (currentNode, callback) {
+        if (currentNode) {
+            this._postOrderTraverseNode(currentNode.left, callback);
+            this._postOrderTraverseNode(currentNode.right, callback);
+            callback(currentNode.key);
         }
     };
     /**
@@ -110,16 +139,21 @@ var BinarySearchTree = /** @class */ (function () {
      */
     BinarySearchTree.prototype.inOrderTraverse = function (callback) {
         BinarySearchTree._inOrderTraverseNode(this.root, callback);
+        return this;
     };
     /**
      * 先序遍历
      */
-    BinarySearchTree.prototype.preOrderTraverse = function () {
+    BinarySearchTree.prototype.preOrderTraverse = function (callback) {
+        BinarySearchTree._preOrderTraverseNode(this.root, callback);
+        return this;
     };
     /**
      * 后序遍历
      */
-    BinarySearchTree.prototype.postOrderTraverse = function () {
+    BinarySearchTree.prototype.postOrderTraverse = function (callback) {
+        BinarySearchTree._postOrderTraverseNode(this.root, callback);
+        return this;
     };
     return BinarySearchTree;
 }());
@@ -132,4 +166,11 @@ binarySearchTree
     .insert(2)
     .inOrderTraverse(function (key) {
     console.log(key);
+})
+    .preOrderTraverse(function (key) {
+    console.log(key);
+})
+    .postOrderTraverse(function (key) {
+    console.log(key);
 });
+// 1 2 8 3 2
