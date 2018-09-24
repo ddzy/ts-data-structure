@@ -119,6 +119,25 @@ var BinarySearchTree = /** @class */ (function () {
         }
     };
     /**
+     * 查找二叉树辅助函数
+     * @param currentNode 当前节点
+     * @param key 查找的键
+     */
+    BinarySearchTree._searchNode = function (node, key) {
+        if (node === null) {
+            return false;
+        }
+        if (key < node.key) {
+            return this._searchNode(node.left, key);
+        }
+        else if (key > node.key) {
+            return this._searchNode(node.right, key);
+        }
+        else {
+            return true;
+        }
+    };
+    /**
      * 二叉树插入新键
      * @param key 插入的键
      * @returns this
@@ -147,7 +166,7 @@ var BinarySearchTree = /** @class */ (function () {
      * @returns Boolean
      */
     BinarySearchTree.prototype.search = function (key) {
-        return false;
+        return BinarySearchTree._searchNode(this.root, key);
     };
     /**
      * 返回树中最大的键
@@ -190,6 +209,6 @@ binarySearchTree
     .insert(3)
     .insert(1)
     .insert(8)
-    .insert(2);
-console.log(binarySearchTree.min());
-console.log(binarySearchTree.max());
+    .insert(2)
+    .insert(5)
+    .insert(7);

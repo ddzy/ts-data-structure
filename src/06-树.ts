@@ -159,6 +159,28 @@ class BinarySearchTree {
   }
 
 
+  /**
+   * 查找二叉树辅助函数
+   * @param currentNode 当前节点
+   * @param key 查找的键
+   */
+  public static _searchNode(
+    node: TreeNode,
+    key: number,
+  ): boolean {
+    if (node === null) { 
+      return false;
+    }
+    if (key < node.key) { 
+      return this._searchNode(node.left, key); 
+    } else if (key > node.key) { 
+      return this._searchNode(node.right, key);
+    } else {
+      return true; 
+    }
+  }
+
+
   private root: any = null
 
 
@@ -206,10 +228,9 @@ class BinarySearchTree {
    * @returns Boolean
    */
   public search(
-    key: string | number,
+    key: number,
   ): boolean {
-
-    return false;
+    return BinarySearchTree._searchNode(this.root, key);
   }
 
 
@@ -275,6 +296,5 @@ binarySearchTree
   .insert(1)
   .insert(8)
   .insert(2)
-
-console.log(binarySearchTree.min());
-console.log(binarySearchTree.max());
+  .insert(5)
+  .insert(7)
