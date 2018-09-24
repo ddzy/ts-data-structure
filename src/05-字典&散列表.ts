@@ -396,6 +396,39 @@ class LinearHashMap {
     _props: ILinearHashMapProps = {},
   ) {}
 
+
+  /**
+   * 转化键为ASCLL
+   * @param key 转化的键
+   */
+  private loseLoseHashCode(
+    key: string,
+  ): number {
+    let result: number = 0;
+
+    for(let i = 0, item; item = key[i++];) {
+      result += key.charCodeAt(i - 1);
+    }
+
+    return result;
+  }
+
+
+  /**
+   * 判断对应的键值是否存在
+   * @param key 查找的键
+   */
+  private isKeyExist(
+    key: string,
+  ): boolean {
+    const keyPosition: number = this.loseLoseHashCode(key);
+
+    return Reflect.get(
+      this.table,
+      keyPosition,
+    ) === undefined;
+  }
+
   
   /**
    * 新增散列表数据
