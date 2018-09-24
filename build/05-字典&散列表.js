@@ -335,5 +335,4 @@ linearHashMap
     .set('yang', 'yanggegeaaa')
     .set('duan', [4, 5, 6])
     .set('zhao', 333);
-// console.log(linearHashMap.getTable())
 console.log(linearHashMap.get('zhao'));
