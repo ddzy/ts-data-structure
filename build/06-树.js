@@ -8,13 +8,18 @@
  * 键: 树中对节点的称呼
  *
  * 中序遍历{
- *    规则: 从最小到最大的顺序访问所有节点
+ *    规则: 左侧节点 -> 本节点 -> 右侧节点
  *    应用: 树的排序
  * }
  *
  * 先序遍历{
- *    规则: 先访问节点本身, 然后在访问左侧节点, 最后访问右侧节点
+ *    规则: 本节点 -> 左侧节点 -> 右侧节点
  *    应用: 打印结构化的文档
+ * }
+ *
+ * 后序遍历{
+ *    规则: 左侧节点 -> 右侧节点 -> 本节点
+ *    应用: 计算一个目录和它的子目录中所有文件所占空间大小
  * }
  */
 ;
@@ -68,6 +73,26 @@ var BinarySearchTree = /** @class */ (function () {
             callback(currentNode.key);
             this._inOrderTraverseNode(currentNode.right, callback);
         }
+    };
+    /**
+     * 寻找最小节点辅助函数
+     * @param currentNode 当前节点
+     */
+    BinarySearchTree._minNode = function (currentNode) {
+        while (currentNode && currentNode.left) {
+            currentNode = currentNode.left;
+        }
+        return currentNode.key;
+    };
+    /**
+   * 寻找最大节点辅助函数
+   * @param currentNode 当前节点
+   */
+    BinarySearchTree._maxNode = function (currentNode) {
+        while (currentNode && currentNode.right) {
+            currentNode = currentNode.right;
+        }
+        return currentNode.key;
     };
     /**
      * 先序遍历辅助函数
@@ -128,11 +153,13 @@ var BinarySearchTree = /** @class */ (function () {
      * 返回树中最大的键
      */
     BinarySearchTree.prototype.max = function () {
+        return BinarySearchTree._maxNode(this.root);
     };
     /**
      * 返回树中最小的键
      */
     BinarySearchTree.prototype.min = function () {
+        return BinarySearchTree._minNode(this.root);
     };
     /**
      * 中序遍历
@@ -163,14 +190,6 @@ binarySearchTree
     .insert(3)
     .insert(1)
     .insert(8)
-    .insert(2)
-    .inOrderTraverse(function (key) {
-    console.log(key);
-})
-    .preOrderTraverse(function (key) {
-    console.log(key);
-})
-    .postOrderTraverse(function (key) {
-    console.log(key);
-});
-// 1 2 8 3 2
+    .insert(2);
+console.log(binarySearchTree.min());
+console.log(binarySearchTree.max());

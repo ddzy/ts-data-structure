@@ -7,13 +7,18 @@
  * 键: 树中对节点的称呼
  * 
  * 中序遍历{
- *    规则: 从最小到最大的顺序访问所有节点  
+ *    规则: 左侧节点 -> 本节点 -> 右侧节点  
  *    应用: 树的排序
  * }
  * 
  * 先序遍历{
- *    规则: 先访问节点本身, 然后在访问左侧节点, 最后访问右侧节点
+ *    规则: 本节点 -> 左侧节点 -> 右侧节点
  *    应用: 打印结构化的文档
+ * }
+ * 
+ * 后序遍历{
+ *    规则: 左侧节点 -> 右侧节点 -> 本节点
+ *    应用: 计算一个目录和它的子目录中所有文件所占空间大小
  * }
  */
 
@@ -26,7 +31,7 @@
 /**
  * 二叉搜索树
  */
-interface IBinarySearchTreeProps {};
+interface IBinarySearchTreeProps { };
 interface ITreeNodeProps {
   key?: string | number;
 };
@@ -57,16 +62,16 @@ class BinarySearchTree {
     newNode: TreeNode,
   ): void {
     // 目标键大于当前键,右插, 反之左插
-    if(newNode.key < currentNode.key) {
-      if(!currentNode.left) {
+    if (newNode.key < currentNode.key) {
+      if (!currentNode.left) {
         currentNode.left = newNode;
-      }else {
+      } else {
         this._insertNode(currentNode.left, newNode);
       }
-    }else {
-      if(!currentNode.right) {
+    } else {
+      if (!currentNode.right) {
         currentNode.right = newNode;
-      }else {
+      } else {
         this._insertNode(currentNode.right, newNode);
       }
     }
@@ -82,11 +87,41 @@ class BinarySearchTree {
     currentNode: TreeNode,
     callback: (key: any) => void,
   ): void {
-    if(currentNode !== null) {
+    if (currentNode !== null) {
       this._inOrderTraverseNode(currentNode.left, callback);
       callback(currentNode.key);
       this._inOrderTraverseNode(currentNode.right, callback);
     }
+  }
+
+
+  /**
+   * 寻找最小节点辅助函数
+   * @param currentNode 当前节点
+   */
+  public static _minNode(
+    currentNode: TreeNode,
+  ): any {
+    while (currentNode && currentNode.left) {
+      currentNode = currentNode.left;
+    }
+
+    return currentNode.key;
+  }
+
+
+  /**
+ * 寻找最大节点辅助函数
+ * @param currentNode 当前节点
+ */
+  public static _maxNode(
+    currentNode: TreeNode,
+  ): any {
+    while (currentNode && currentNode.right) {
+      currentNode = currentNode.right;
+    }
+
+    return currentNode.key;
   }
 
 
@@ -99,12 +134,12 @@ class BinarySearchTree {
     currentNode: TreeNode,
     callback: (key: any) => void,
   ): void {
-    if(currentNode) {
+    if (currentNode) {
       callback(currentNode.key);
       this._preOrderTraverseNode(currentNode.left, callback);
       this._preOrderTraverseNode(currentNode.right, callback);
     }
-  } 
+  }
 
 
   /**
@@ -116,7 +151,7 @@ class BinarySearchTree {
     currentNode: TreeNode,
     callback: (key: any) => void,
   ): void {
-    if(currentNode) {
+    if (currentNode) {
       this._postOrderTraverseNode(currentNode.left, callback);
       this._postOrderTraverseNode(currentNode.right, callback);
       callback(currentNode.key);
@@ -129,7 +164,7 @@ class BinarySearchTree {
 
   public constructor(
     _props: IBinarySearchTreeProps = {},
-  ) {}
+  ) { }
 
 
   /**
@@ -142,10 +177,10 @@ class BinarySearchTree {
   ): BinarySearchTree {
     const treeNode: TreeNode = new TreeNode({ key });
 
-    if(!this.root) {
+    if (!this.root) {
       this.root = treeNode;
-    }else {
-      BinarySearchTree._insertNode(this.root, treeNode);  
+    } else {
+      BinarySearchTree._insertNode(this.root, treeNode);
     }
 
     return this;
@@ -182,7 +217,7 @@ class BinarySearchTree {
    * 返回树中最大的键
    */
   public max(): any {
-
+    return BinarySearchTree._maxNode(this.root);
   }
 
 
@@ -190,10 +225,10 @@ class BinarySearchTree {
    * 返回树中最小的键
    */
   public min(): any {
-
+    return BinarySearchTree._minNode(this.root);
   }
 
-  
+
   /**
    * 中序遍历
    */
@@ -217,7 +252,7 @@ class BinarySearchTree {
     return this;
   }
 
-  
+
   /**
    * 后序遍历
    */
@@ -240,14 +275,6 @@ binarySearchTree
   .insert(1)
   .insert(8)
   .insert(2)
-  .inOrderTraverse((key) => {
-    console.log(key);
-  })  
-  .preOrderTraverse((key) => {
-    console.log(key);
-  })
-  .postOrderTraverse((key) => {
-    console.log(key);
-  }) 
 
-  // 1 2 8 3 2
+console.log(binarySearchTree.min());
+console.log(binarySearchTree.max());
