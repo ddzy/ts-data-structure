@@ -303,6 +303,18 @@ var LinearHashMap = /** @class */ (function () {
      * @param key 获取的键
      */
     LinearHashMap.prototype.get = function (key) {
+        var keyPosition = this.loseLoseHashCode(key);
+        var result = [];
+        if (this.isKeyExist(keyPosition)) {
+            return [];
+        }
+        else {
+            while (this.isKeyExist(++keyPosition)) {
+                keyPosition++;
+            }
+            return Reflect.get(this.table, keyPosition).key === key
+                && Reflect.get(this.table, keyPosition).value;
+        }
     };
     /**
      * 删除散列表数据
@@ -323,4 +335,5 @@ linearHashMap
     .set('yang', 'yanggegeaaa')
     .set('duan', [4, 5, 6])
     .set('zhao', 333);
-console.log(linearHashMap.getTable());
+// console.log(linearHashMap.getTable())
+console.log(linearHashMap.get('zhao'));

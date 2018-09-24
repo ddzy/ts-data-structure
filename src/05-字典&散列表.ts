@@ -476,7 +476,21 @@ class LinearHashMap {
   public get(
     key: string,
   ): any {
+    let keyPosition: number = this.loseLoseHashCode(key);
+    const result: any[] = [];
 
+    if(this.isKeyExist(keyPosition)) {
+      return [];
+    }else {
+      while(
+        this.isKeyExist(++keyPosition)
+      ) {
+        keyPosition ++;
+      }
+      
+      return Reflect.get(this.table, keyPosition).key === key
+        && Reflect.get(this.table, keyPosition).value;
+    }
   }
   
 
@@ -507,7 +521,8 @@ linearHashMap
   .set('duan', [4, 5, 6])
   .set('zhao', 333)
 
-console.log(linearHashMap.getTable())
+// console.log(linearHashMap.getTable())
+console.log(linearHashMap.get('zhao'));
 
 
 
