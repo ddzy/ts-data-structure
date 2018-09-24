@@ -6,15 +6,17 @@
  *  特点: 左侧节点存储比父节点小的值, 右侧节点存储比父节点大或等的值
  *
  * 键: 树中对节点的称呼
+ *
+ *
  */
 ;
 ;
 var TreeNode = /** @class */ (function () {
     function TreeNode(_props) {
-        if (_props === void 0) { _props = {}; }
         this.key = 0;
         this.left = null;
         this.right = null;
+        this.key = _props.key;
     }
     return TreeNode;
 }());
@@ -24,11 +26,42 @@ var BinarySearchTree = /** @class */ (function () {
         this.root = null;
     }
     /**
+     * 递归树
+     * @param currentNode 当前节点
+     * @param newNode 要插入的节点
+     */
+    BinarySearchTree._insertNode = function (currentNode, newNode) {
+        // 目标键大于当前键,右插, 反之左插
+        if (newNode.key < currentNode.key) {
+            if (!currentNode.left) {
+                currentNode.left = newNode;
+            }
+            else {
+                this._insertNode(currentNode.left, newNode);
+            }
+        }
+        else {
+            if (!currentNode.right) {
+                currentNode.right = newNode;
+            }
+            else {
+                this._insertNode(currentNode.right, newNode);
+            }
+        }
+    };
+    /**
      * 二叉树插入新键
      * @param key 插入的键
      * @returns this
      */
     BinarySearchTree.prototype.insert = function (key) {
+        var treeNode = new TreeNode({ key: key });
+        if (!this.root) {
+            this.root = treeNode;
+        }
+        else {
+            BinarySearchTree._insertNode(this.root, treeNode);
+        }
         return this;
     };
     /**
@@ -74,3 +107,7 @@ var BinarySearchTree = /** @class */ (function () {
     };
     return BinarySearchTree;
 }());
+var binarySearchTree = new BinarySearchTree({});
+binarySearchTree
+    .insert(2)
+    .insert(3);

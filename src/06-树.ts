@@ -5,6 +5,8 @@
  *  特点: 左侧节点存储比父节点小的值, 右侧节点存储比父节点大或等的值
  * 
  * 键: 树中对节点的称呼
+ * 
+ * 
  */
 
 
@@ -16,23 +18,54 @@
  * 二叉搜索树
  */
 interface IBinarySearchTreeProps {};
-interface ITreeNodeProps {};
+interface ITreeNodeProps {
+  key?: string | number;
+};
 
 class TreeNode {
   public readonly key: any = 0
 
-  public readonly left: any = null
+  public left: any = null
 
-  public readonly right: any = null
+  public right: any = null
 
   public constructor(
-    _props: ITreeNodeProps = {},
-  ) {}
+    _props: ITreeNodeProps,
+  ) {
+    this.key = _props.key;
+  }
 }
 
 class BinarySearchTree {
 
+  /**
+   * 递归树
+   * @param currentNode 当前节点
+   * @param newNode 要插入的节点
+   */
+  public static _insertNode(
+    currentNode: TreeNode,
+    newNode: TreeNode,
+  ): void {
+    // 目标键大于当前键,右插, 反之左插
+    if(newNode.key < currentNode.key) {
+      if(!currentNode.left) {
+        currentNode.left = newNode;
+      }else {
+        this._insertNode(currentNode.left, newNode);
+      }
+    }else {
+      if(!currentNode.right) {
+        currentNode.right = newNode;
+      }else {
+        this._insertNode(currentNode.right, newNode);
+      }
+    }
+  }
+
+
   private root: any = null
+
 
   public constructor(
     _props: IBinarySearchTreeProps = {},
@@ -47,6 +80,13 @@ class BinarySearchTree {
   public insert(
     key: string | number,
   ): BinarySearchTree {
+    const treeNode: TreeNode = new TreeNode({ key });
+
+    if(!this.root) {
+      this.root = treeNode;
+    }else {
+      BinarySearchTree._insertNode(this.root, treeNode);  
+    }
 
     return this;
   }
@@ -90,7 +130,7 @@ class BinarySearchTree {
    * 返回树中最小的键
    */
   public min(): any {
-    
+
   }
 
   
@@ -118,3 +158,10 @@ class BinarySearchTree {
   }
 
 }
+
+
+const binarySearchTree = new BinarySearchTree({});
+
+binarySearchTree
+  .insert(2)
+  .insert(3);
