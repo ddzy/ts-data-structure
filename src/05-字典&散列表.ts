@@ -419,10 +419,8 @@ class LinearHashMap {
    * @param key 查找的键
    */
   private isKeyExist(
-    key: string,
+    keyPosition: number,
   ): boolean {
-    const keyPosition: number = this.loseLoseHashCode(key);
-
     return Reflect.get(
       this.table,
       keyPosition,
@@ -437,8 +435,35 @@ class LinearHashMap {
    */
   public set(
     key: string,
-    value: IFormatDetachHashMapProps,
+    value: any,
   ): LinearHashMap {
+    let keyPosition: number = this.loseLoseHashCode(key);
+    
+    // 键值不存在
+    if(this.isKeyExist(keyPosition)) {
+      Reflect.set(
+        this.table,
+        keyPosition,
+        new FormatDetachHashMap({
+          key,
+          value,
+        }),
+      );
+    }else {
+      // 键值存在
+      while(!this.isKeyExist(++keyPosition)) {
+        keyPosition ++;
+      }
+
+      Reflect.set(
+        this.table,
+        keyPosition,
+        new FormatDetachHashMap({
+          key,
+          value,
+        })
+      );
+    }
 
     return this;
   }
@@ -465,8 +490,24 @@ class LinearHashMap {
 
     return false;
   }
+
+  
+  public getTable(): any[] {
+    return this.table;
+  }
 }
 
+
+const linearHashMap = new LinearHashMap({});
+
+linearHashMap
+  .set('duan', [1, 2, 3])
+  .set('zhao', 222)
+  .set('yang', 'yanggegeaaa')
+  .set('duan', [4, 5, 6])
+  .set('zhao', 333)
+
+console.log(linearHashMap.getTable())
 
 
 

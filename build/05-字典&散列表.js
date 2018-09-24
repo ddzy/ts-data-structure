@@ -269,8 +269,7 @@ var LinearHashMap = /** @class */ (function () {
      * 判断对应的键值是否存在
      * @param key 查找的键
      */
-    LinearHashMap.prototype.isKeyExist = function (key) {
-        var keyPosition = this.loseLoseHashCode(key);
+    LinearHashMap.prototype.isKeyExist = function (keyPosition) {
         return Reflect.get(this.table, keyPosition) === undefined;
     };
     /**
@@ -279,6 +278,24 @@ var LinearHashMap = /** @class */ (function () {
      * @param value 键值
      */
     LinearHashMap.prototype.set = function (key, value) {
+        var keyPosition = this.loseLoseHashCode(key);
+        // 键值不存在
+        if (this.isKeyExist(keyPosition)) {
+            Reflect.set(this.table, keyPosition, new FormatDetachHashMap({
+                key: key,
+                value: value,
+            }));
+        }
+        else {
+            // 键值存在
+            while (!this.isKeyExist(++keyPosition)) {
+                keyPosition++;
+            }
+            Reflect.set(this.table, keyPosition, new FormatDetachHashMap({
+                key: key,
+                value: value,
+            }));
+        }
         return this;
     };
     /**
@@ -294,5 +311,16 @@ var LinearHashMap = /** @class */ (function () {
     LinearHashMap.prototype.delete = function (key) {
         return false;
     };
+    LinearHashMap.prototype.getTable = function () {
+        return this.table;
+    };
     return LinearHashMap;
 }());
+var linearHashMap = new LinearHashMap({});
+linearHashMap
+    .set('duan', [1, 2, 3])
+    .set('zhao', 222)
+    .set('yang', 'yanggegeaaa')
+    .set('duan', [4, 5, 6])
+    .set('zhao', 333);
+console.log(linearHashMap.getTable());
