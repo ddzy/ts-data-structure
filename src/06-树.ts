@@ -203,7 +203,13 @@ class BinarySearchTree {
         return currentNode;
       }
       // 2. 有一个子节点(左孩子or右孩子)的节点
-      
+      else if(currentNode.left === null) {
+        currentNode = currentNode.right;
+        return currentNode;
+      }else if(currentNode.right === null) {
+        currentNode = currentNode.left;
+        return currentNode;
+      }
 
       // 3. 有两个子节点
       if(
@@ -341,9 +347,9 @@ binarySearchTree
   .insert(5)
   .insert(7)
 
-binarySearchTree.delete(7);
+binarySearchTree.delete(5);
 
-console.log(binarySearchTree.getRoot());
+// console.log(binarySearchTree.getRoot());
 
 binarySearchTree.inOrderTraverse((item) => {
   console.log(item);  
