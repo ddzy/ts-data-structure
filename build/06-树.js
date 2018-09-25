@@ -137,6 +137,32 @@ var BinarySearchTree = /** @class */ (function () {
             return true;
         }
     };
+    BinarySearchTree._deleteNode = function (currentNode, key) {
+        if (currentNode === null) {
+            return null;
+        }
+        else if (key < currentNode.key) {
+            currentNode.left = this._deleteNode(currentNode.left, key);
+            return currentNode;
+        }
+        else if (key > currentNode.key) {
+            currentNode.right = this._deleteNode(currentNode.right, key);
+            return currentNode;
+        }
+        else {
+            // 1. 单个叶节点
+            if (currentNode.left === null
+                && currentNode.right === null) {
+                currentNode = null;
+                return currentNode;
+            }
+            // 2. 有一个子节点(左孩子or右孩子)的节点
+            // 3. 有两个子节点
+            if (currentNode.left
+                && currentNode.right) {
+            }
+        }
+    };
     /**
      * 二叉树插入新键
      * @param key 插入的键
@@ -158,7 +184,7 @@ var BinarySearchTree = /** @class */ (function () {
      * @returns Boolean
      */
     BinarySearchTree.prototype.delete = function (key) {
-        return false;
+        this.root = BinarySearchTree._deleteNode(this.root, key);
     };
     /**
      * 查找二叉树的键
@@ -201,6 +227,12 @@ var BinarySearchTree = /** @class */ (function () {
         BinarySearchTree._postOrderTraverseNode(this.root, callback);
         return this;
     };
+    /**
+     * 获取根节点
+     */
+    BinarySearchTree.prototype.getRoot = function () {
+        return this.root;
+    };
     return BinarySearchTree;
 }());
 var binarySearchTree = new BinarySearchTree({});
@@ -212,3 +244,8 @@ binarySearchTree
     .insert(2)
     .insert(5)
     .insert(7);
+binarySearchTree.delete(7);
+console.log(binarySearchTree.getRoot());
+binarySearchTree.inOrderTraverse(function (item) {
+    console.log(item);
+});

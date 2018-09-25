@@ -181,6 +181,41 @@ class BinarySearchTree {
   }
 
 
+  public static _deleteNode(
+    currentNode: TreeNode | null,
+    key: number,
+  ): any {
+    if(currentNode === null) {
+      return null;
+    }else if(key < currentNode.key) {
+      currentNode.left = this._deleteNode(currentNode.left, key);
+      return currentNode;
+    }else if(key > currentNode.key) {
+      currentNode.right = this._deleteNode(currentNode.right, key);
+      return currentNode;
+    }else{
+      // 1. 单个叶节点
+      if(
+        currentNode.left === null 
+        && currentNode.right === null
+      ) {
+        currentNode = null;
+        return currentNode;
+      }
+      // 2. 有一个子节点(左孩子or右孩子)的节点
+      
+
+      // 3. 有两个子节点
+      if(
+        currentNode.left 
+        && currentNode.right
+      ) {
+
+      }
+    }
+  }
+
+
   private root: any = null
 
 
@@ -195,7 +230,7 @@ class BinarySearchTree {
    * @returns this
    */
   public insert(
-    key: string | number,
+    key: number,
   ): BinarySearchTree {
     const treeNode: TreeNode = new TreeNode({ key });
 
@@ -215,10 +250,9 @@ class BinarySearchTree {
    * @returns Boolean
    */
   public delete(
-    key: string | number,
-  ): boolean {
-
-    return false;
+    key: number,
+  ): any {
+    this.root = BinarySearchTree._deleteNode(this.root, key);
   }
 
 
@@ -285,6 +319,14 @@ class BinarySearchTree {
     return this;
   }
 
+
+  /**
+   * 获取根节点
+   */
+  public getRoot(): TreeNode | null {
+    return this.root;
+  }
+
 }
 
 
@@ -298,3 +340,11 @@ binarySearchTree
   .insert(2)
   .insert(5)
   .insert(7)
+
+binarySearchTree.delete(7);
+
+console.log(binarySearchTree.getRoot());
+
+binarySearchTree.inOrderTraverse((item) => {
+  console.log(item);  
+}); 
