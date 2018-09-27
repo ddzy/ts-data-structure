@@ -88,6 +88,23 @@ class ArrayList {
       arr[j] = temp;
     }
   }
+
+
+  public _bubbleSort(): void {
+    const arr: number[] = this.arr;
+    const len: number = arr.length;
+
+    for(let i = 0; i < len; i++) {
+      for(let j = 0; j < len - 1; j++) {
+        if(arr[j + 1] > arr[j]) {
+          let temp: number = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
+      }
+    }
+  }
+
 }
 
 
@@ -103,9 +120,9 @@ sort
   .insert(100)
   .insert(5)
 
-// sort.bubbleSort();
-// sort.selectionSort();
-sort.insertionSort();
+new Array().sort();
+
+sort._bubbleSort();
 
 console.log(sort.print());
 

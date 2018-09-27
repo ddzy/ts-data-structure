@@ -70,6 +70,19 @@ var ArrayList = /** @class */ (function () {
             arr[j] = temp;
         }
     };
+    ArrayList.prototype._bubbleSort = function () {
+        var arr = this.arr;
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (arr[j + 1] > arr[j]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    };
     return ArrayList;
 }());
 var sort = new ArrayList();
@@ -82,7 +95,6 @@ sort
     .insert(34)
     .insert(100)
     .insert(5);
-// sort.bubbleSort();
-// sort.selectionSort();
-sort.insertionSort();
+new Array().sort();
+sort._bubbleSort();
 console.log(sort.print());
