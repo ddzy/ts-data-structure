@@ -47,6 +47,26 @@ class ArrayList {
       }
     }
   }
+
+
+  /**
+   * 选择排序
+   * 特点: 找到最小值并将其放在第一位, 接着找2.3....
+   */
+  public selectionSort(): void {
+    const arr: number[] = this.arr;
+    const len: number = arr.length;
+    let minNum: number = 0;
+
+    for(let i = 0; i < len - 1; i ++) {
+      minNum = i;
+      for(let j = i; j < len; j ++) {
+        if(arr[j] < arr[minNum]) {
+          this._swap(j, minNum);
+        }
+      }
+    }
+  }
 }
 
 
@@ -59,9 +79,11 @@ sort
   .insert(98)
   .insert(67)
   .insert(34)
+  .insert(100)
+  .insert(5)
 
-sort.bubbleSort();
-
+// sort.bubbleSort();
+sort.selectionSort();
 
 console.log(sort.print());
 

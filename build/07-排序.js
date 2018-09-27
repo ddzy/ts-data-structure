@@ -35,6 +35,23 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
+    /**
+     * 选择排序
+     * 特点: 找到最小值并将其放在第一位, 接着找2.3....
+     */
+    ArrayList.prototype.selectionSort = function () {
+        var arr = this.arr;
+        var len = arr.length;
+        var minNum = 0;
+        for (var i = 0; i < len - 1; i++) {
+            minNum = i;
+            for (var j = i; j < len; j++) {
+                if (arr[j] < arr[minNum]) {
+                    this._swap(j, minNum);
+                }
+            }
+        }
+    };
     return ArrayList;
 }());
 var sort = new ArrayList();
@@ -44,6 +61,9 @@ sort
     .insert(10)
     .insert(98)
     .insert(67)
-    .insert(34);
-sort.bubbleSort();
+    .insert(34)
+    .insert(100)
+    .insert(5);
+// sort.bubbleSort();
+sort.selectionSort();
 console.log(sort.print());
