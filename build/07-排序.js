@@ -52,6 +52,24 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
+    /**
+     * 插入排序
+     */
+    ArrayList.prototype.insertionSort = function () {
+        var arr = this.arr;
+        var len = arr.length;
+        var j = 0;
+        var temp = 0;
+        for (var i = 1; i < len; i++) {
+            j = i;
+            temp = arr[i];
+            while (j > 0 && arr[j - 1] > temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+    };
     return ArrayList;
 }());
 var sort = new ArrayList();
@@ -65,5 +83,6 @@ sort
     .insert(100)
     .insert(5);
 // sort.bubbleSort();
-sort.selectionSort();
+// sort.selectionSort();
+sort.insertionSort();
 console.log(sort.print());
