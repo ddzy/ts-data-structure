@@ -98,6 +98,21 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
+    ArrayList.prototype._insertionSort = function () {
+        var arr = this.arr;
+        var len = arr.length;
+        var temp = 0;
+        var j = 0;
+        for (var i = 1; i < len; i++) {
+            j = i;
+            temp = arr[j];
+            while (j > 0 && arr[j - 1] > temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+    };
     return ArrayList;
 }());
 var sort = new ArrayList();
@@ -110,7 +125,8 @@ sort
     .insert(34)
     .insert(100)
     .insert(5);
-new Array().sort();
+// new Array().sort();
 // sort._bubbleSort();
-sort._selectionSort();
+// sort._selectionSort();
+sort._insertionSort();
 console.log(sort.print());

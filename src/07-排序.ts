@@ -123,9 +123,22 @@ class ArrayList {
     }
   }
 
-  // public _insertionSort(): void {
-    
-  // }
+  public _insertionSort(): void {
+    const arr: number[] = this.arr;
+    const len: number = arr.length;
+    let temp: number = 0;
+    let j: number = 0;
+
+    for(let i = 1; i < len; i++) {
+      j = i;
+      temp = arr[j];
+      while(j > 0 && arr[j - 1] > temp) {
+        arr[j] = arr[j - 1];
+        j --;
+      }
+      arr[j] = temp;
+    }
+  }
 
 }
 
@@ -142,10 +155,11 @@ sort
   .insert(100)
   .insert(5)
 
-new Array().sort();
+// new Array().sort();
 
 // sort._bubbleSort();
-sort._selectionSort();
+// sort._selectionSort();
+sort._insertionSort();
 
 console.log(sort.print());
 
