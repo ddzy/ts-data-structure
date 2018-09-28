@@ -83,6 +83,21 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
+    ArrayList.prototype._selectionSort = function () {
+        var arr = this.arr;
+        var len = arr.length;
+        var minNum = 0;
+        for (var i = 0; i < len - 1; i++) {
+            minNum = i;
+            for (var j = i; j < len; j++) {
+                if (arr[j] > arr[minNum]) {
+                    var temp = arr[minNum];
+                    arr[minNum] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    };
     return ArrayList;
 }());
 var sort = new ArrayList();
@@ -96,5 +111,6 @@ sort
     .insert(100)
     .insert(5);
 new Array().sort();
-sort._bubbleSort();
+// sort._bubbleSort();
+sort._selectionSort();
 console.log(sort.print());

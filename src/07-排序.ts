@@ -105,6 +105,28 @@ class ArrayList {
     }
   }
 
+
+  public _selectionSort(): void {
+    const arr: number[] = this.arr;
+    const len: number = arr.length;
+    let minNum: number = 0;
+
+    for(let i = 0; i < len - 1; i++) {
+      minNum = i;
+      for(let j = i; j < len; j++) {
+        if(arr[j] > arr[minNum]) {
+          let temp: number = arr[minNum];
+          arr[minNum] = arr[j];
+          arr[j] = temp;
+        }
+      }
+    }
+  }
+
+  // public _insertionSort(): void {
+    
+  // }
+
 }
 
 
@@ -122,7 +144,8 @@ sort
 
 new Array().sort();
 
-sort._bubbleSort();
+// sort._bubbleSort();
+sort._selectionSort();
 
 console.log(sort.print());
 
