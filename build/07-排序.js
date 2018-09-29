@@ -70,7 +70,10 @@ var ArrayList = /** @class */ (function () {
             arr[j] = temp;
         }
     };
-    ArrayList.prototype._bubbleSort = function () {
+    /**
+     * review
+     */
+    ArrayList.prototype.review_bubbleSort = function () {
         var arr = this.arr;
         var len = arr.length;
         for (var i = 0; i < len; i++) {
@@ -83,7 +86,7 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
-    ArrayList.prototype._selectionSort = function () {
+    ArrayList.prototype.review_selectionSort = function () {
         var arr = this.arr;
         var len = arr.length;
         var minNum = 0;
@@ -98,7 +101,7 @@ var ArrayList = /** @class */ (function () {
             }
         }
     };
-    ArrayList.prototype._insertionSort = function () {
+    ArrayList.prototype.review_insertionSort = function () {
         var arr = this.arr;
         var len = arr.length;
         var temp = 0;
@@ -128,5 +131,5 @@ sort
 // new Array().sort();
 // sort._bubbleSort();
 // sort._selectionSort();
-sort._insertionSort();
+// sort._insertionSort();
 console.log(sort.print());

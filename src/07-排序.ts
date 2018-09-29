@@ -90,7 +90,10 @@ class ArrayList {
   }
 
 
-  public _bubbleSort(): void {
+  /**
+   * review
+   */
+  public review_bubbleSort(): void {
     const arr: number[] = this.arr;
     const len: number = arr.length;
 
@@ -106,7 +109,7 @@ class ArrayList {
   }
 
 
-  public _selectionSort(): void {
+  public review_selectionSort(): void {
     const arr: number[] = this.arr;
     const len: number = arr.length;
     let minNum: number = 0;
@@ -123,7 +126,8 @@ class ArrayList {
     }
   }
 
-  public _insertionSort(): void {
+
+  public review_insertionSort(): void {
     const arr: number[] = this.arr;
     const len: number = arr.length;
     let temp: number = 0;
@@ -161,7 +165,7 @@ sort
 
 // sort._bubbleSort();
 // sort._selectionSort();
-sort._insertionSort();
+// sort._insertionSort();
 
 console.log(sort.print());
 
