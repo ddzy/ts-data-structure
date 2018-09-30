@@ -31,9 +31,12 @@ class ArrayList {
     return result;
   }
 
+  
   private arr: number[] = []
 
+
   public constructor() {}
+
 
   public insert(
     item: number,
@@ -43,11 +46,13 @@ class ArrayList {
     return this;
   }
 
+
   public print(): string {
     return this.arr.length === 0
       ? ''
       : this.arr.join();
   }
+
 
   protected _swap(
     current: number, 
@@ -57,6 +62,7 @@ class ArrayList {
     this.arr[current] = this.arr[next]; 
     this.arr[next] = temp;
   }
+
 
   protected _merge(
     arr: number[],
