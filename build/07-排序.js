@@ -6,6 +6,24 @@ var ArrayList = /** @class */ (function () {
     function ArrayList() {
         this.arr = [];
     }
+    ArrayList.merge = function (leftArr, rightArr) {
+        var result = [];
+        var leftIndex = 0;
+        var rightIndex = 0;
+        while (leftIndex < leftArr.length
+            && rightIndex < rightArr.length) {
+            leftArr[leftIndex] < rightArr[rightIndex]
+                ? result.push(leftArr[leftIndex++])
+                : result.push(rightArr[rightIndex++]);
+        }
+        while (leftIndex < leftArr.length) {
+            result.push(leftArr[leftIndex++]);
+        }
+        while (rightIndex < rightArr.length) {
+            result.push(rightArr[rightIndex++]);
+        }
+        return result;
+    };
     ArrayList.prototype.insert = function (item) {
         this.arr.push(item);
         return this;
@@ -19,6 +37,15 @@ var ArrayList = /** @class */ (function () {
         var temp = this.arr[current];
         this.arr[current] = this.arr[next];
         this.arr[next] = temp;
+    };
+    ArrayList.prototype._merge = function (arr) {
+        if (arr.length === 1) {
+            return arr;
+        }
+        var middleNum = ~~(arr.length / 2);
+        var leftArr = arr.slice(0, middleNum);
+        var rightArr = arr.slice(middleNum, arr.length);
+        return ArrayList.merge(this._merge(leftArr), this._merge(rightArr));
     };
     /**
      * 冒泡排序
@@ -69,6 +96,14 @@ var ArrayList = /** @class */ (function () {
             }
             arr[j] = temp;
         }
+    };
+    /**
+     * 归并排序
+     * 特点: 将原始数组切分成较小数组, 知道每个数组只有一个位置, 接着将小数组
+     * 归并成大数组, 直到只剩最后一个大数组
+     */
+    ArrayList.prototype.mergeSort = function () {
+        this.arr = this._merge(this.arr);
     };
     /**
      * review
@@ -132,4 +167,5 @@ sort
 // sort._bubbleSort();
 // sort._selectionSort();
 // sort._insertionSort();
+sort.mergeSort();
 console.log(sort.print());
